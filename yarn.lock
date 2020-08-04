@@ -2,7 +2,32 @@
 # yarn lockfile v1
 
 
+"@types/uuid@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-8.0.0.tgz#165aae4819ad2174a17476dbe66feebd549556c0"
+  integrity sha512-xSQfNcvOiE5f9dyd4Kzxbof1aTrLobL278pGLKOZI6esGfZ7ts9Ka16CzIN6Y8hFHE1C7jIBZokULhK1bOgjRw==
+
+class-transformer@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/class-transformer/-/class-transformer-0.3.1.tgz#ee681a5439ff2230fc57f5056412d3befa70d597"
+  integrity sha512-cKFwohpJbuMovS8xVLmn8N2AUbAuc8pVo4zEfsUVo8qgECOogns1WVk/FkOZoxhOPTyTYFckuoH+13FO+MQ8GA==
+
+prettier@^2.0.5:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.0.5.tgz#d6d56282455243f2f92cc1716692c08aa31522d4"
+  integrity sha512-7PtVymN48hGcO4fGjybyBSIWDsLU4H4XlvOHfq91pz9kkGlonzwTfYkaIEwiRg/dAJF9YlbsduBAgtYLi+8cFg==
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
+
 typescript@^3.9.7:
   version "3.9.7"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
   integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
+
+uuid@^8.3.0:
+  version "8.3.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.0.tgz#ab738085ca22dc9a8c92725e459b1d507df5d6ea"
+  integrity sha512-fX6Z5o4m6XsXBdli9g7DtWgAx+osMsRRZFKma1mIUsLCz6vRvv+pz5VNbyu9UEDzpMWulZfvpgb/cmDXVulYFQ==
