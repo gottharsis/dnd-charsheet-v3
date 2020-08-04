@@ -1,0 +1,9 @@
+{
+  "name": "dnd-charsheet-v3",
+  "version": "0.0.1",
+  "description": "A web app to hold a character sheet for Dungeons and Dragons fifth edition",
+  "main": "index.js",
+  "repository": "https://github.com/gottharsis/dnd-charsheet-v3.git",
+  "author": "Ayush Nene <ayush3108@gmail.com>",
+  "license": "MIT"
+}
