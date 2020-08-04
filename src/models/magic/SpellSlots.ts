@@ -1,3 +1,5 @@
+import { Type } from "class-transformer";
+
 export const multiclassProgression = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 2, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -48,7 +50,7 @@ export class Slot {
     }
 }
 
-export const createSlots = (level: number) =>
+export const createSlots = (level: number): Slot[] =>
     multiclassProgression[Math.floor(level)].map(
         (quantity, level) => new Slot(level, quantity)
     );
