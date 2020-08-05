@@ -15,14 +15,16 @@
         "paths": {
             "@/*": ["src/*"]
         },
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
+        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+        "allowJs": true
     },
     "include": [
         "src/**/*.ts",
         "src/**/*.tsx",
         "src/**/*.vue",
         "tests/**/*.ts",
-        "tests/**/*.tsx"
+        "tests/**/*.tsx",
+        "src/plugins/element.js"
     ],
     "exclude": ["node_modules"]
 }
