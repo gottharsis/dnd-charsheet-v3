@@ -1,5 +1,5 @@
 export class Armor {
-    name: String;
+    name: string;
     ac: number;
 
     constructor() {

@@ -1,11 +1,11 @@
 export interface SourceMagic {
-    ability: String;
+    ability: string;
     progression: number;
 }
 
 export interface SourceClass {
-    name: String;
+    name: string;
     hitDice: number;
-    subclasses: String[];
+    subclasses: string[];
     spellcasting?: SourceMagic;
 }

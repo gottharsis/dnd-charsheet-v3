@@ -1,10 +1,10 @@
 import { v4 as uuid } from "uuid";
 
 export class Feature {
-    name: String;
-    description: String;
-    source: String;
-    id: String;
+    name: string;
+    description: string;
+    source: string;
+    id: string;
     constructor() {
         this.name = "";
         this.description = "";

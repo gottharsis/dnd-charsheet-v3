@@ -1,6 +1,6 @@
 import { ScoreAbility } from "../AbilityScores";
 
 export interface Skill {
-    name: String;
+    name: string;
     stat: ScoreAbility;
 }

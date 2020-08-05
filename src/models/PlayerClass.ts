@@ -1,9 +1,9 @@
 import { Type } from "class-transformer";
 
 export class PClass {
-    name: String;
+    name: string;
     level: number;
-    subclass: String;
+    subclass: string;
     constructor() {
         this.name = "";
         this.subclass = "";

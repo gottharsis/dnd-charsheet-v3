@@ -3,21 +3,21 @@ import { Type } from "class-transformer";
 
 export class Proficiencies {
     @Type(() => String)
-    armor: Set<String>;
+    armor: Set<string>;
     @Type(() => String)
-    weapons: Set<String>;
+    weapons: Set<string>;
 
     @Type(() => String)
     savingThrows: Set<ScoreAbility>;
 
     @Type(() => Number)
-    tools: Map<String, Number>;
+    tools: Map<string, number>;
 
     @Type(() => Number)
-    skills: Map<String, Number>;
+    skills: Map<string, number>;
 
     @Type(() => String)
-    languages: Set<String>;
+    languages: Set<string>;
 
     constructor() {
         this.armor = new Set();

@@ -12,11 +12,11 @@ import { AbilityScore, AbilityScores } from "./AbilityScores";
 import { Proficiencies } from "./Proficiency";
 
 export class Character {
-    id: String;
-    name: String;
-    race: String;
-    size: String;
-    speed: String;
+    id: string;
+    name: string;
+    race: string;
+    size: string;
+    speed: string;
 
     @Type(() => Magic)
     magic: Magic;

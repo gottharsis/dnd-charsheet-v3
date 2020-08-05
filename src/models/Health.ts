@@ -1,7 +1,7 @@
 import { Type, plainToClass, Transform, classToPlain } from "class-transformer";
 export class DeathSaves {
-    success: number = 0;
-    failure: number = 0;
+    success = 0;
+    failure = 0;
 
     succeed(): boolean {
         return ++this.success === 3;

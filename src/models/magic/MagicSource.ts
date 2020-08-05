@@ -8,15 +8,15 @@ export class MagicSource {
     hitBonus: number;
     level = 0;
     @Type(() => String)
-    knownSpells: Set<String>;
+    knownSpells: Set<string>;
     // includes both unpreparable spells and always prepared spells
     @Type(() => String)
-    preparedSpells: Set<String>;
+    preparedSpells: Set<string>;
     @Type(() => String)
-    alwaysPrepared: Set<String>;
+    alwaysPrepared: Set<string>;
 
     @Type(() => Number)
-    singleUseSpells: Map<String, Number>;
+    singleUseSpells: Map<string, number>;
 
     constructor() {
         this.knownSpells = new Set();

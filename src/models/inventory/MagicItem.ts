@@ -1,16 +1,16 @@
-import { v4 as uuid } from "uuid"
+import { v4 as uuid } from "uuid";
 
 export class MagicItem {
     id: string;
-    name: string = '';
-    description = '';
+    name = "";
+    description = "";
     requiresAttunement = false;
     isAttuned = false;
     charges = 0;
     maxCharges = 0;
 
     constructor() {
-        this.id = `magic_item_${uuid()}`
+        this.id = `magic_item_${uuid()}`;
     }
 
     // return true if sufficient charges are there

@@ -3,9 +3,9 @@ import { v4 as uuid } from "uuid";
  * Represents an ability that has a certain amount of uses.
  */
 export class Ability {
-    id: String;
-    name: String;
-    description: String;
+    id: string;
+    name: string;
+    description: string;
     maxUses: number;
     remainingUses: number;
 

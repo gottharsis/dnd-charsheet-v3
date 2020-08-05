@@ -1,17 +1,17 @@
 import { ScoreAbility } from "../AbilityScores";
 
 export interface SourceProficiencies {
-    weapons?: String[];
-    tools?: String[];
-    armor?: String[];
+    weapons?: string[];
+    tools?: string[];
+    armor?: string[];
 }
 
 export interface SourceRace {
-    name: String;
+    name: string;
     ability: Record<ScoreAbility, number>;
-    size: String;
-    senses: String[];
+    size: string;
+    senses: string[];
     proficiencies: SourceProficiencies;
-    languages: String[];
-    features: String[];
+    languages: string[];
+    features: string[];
 }
