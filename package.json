@@ -1,63 +1,63 @@
 {
-  "name": "dnd-charsheet-v3",
-  "version": "0.0.1",
-  "private": true,
-  "description": "A web app to hold a character sheet for Dungeons and Dragons fifth edition",
-  "author": {
-    "name": "Ayush Nene",
-    "email": "ayush3108@gmail.com"
-  },
-  "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "electron:build": "vue-cli-service electron:build",
-    "electron:serve": "vue-cli-service electron:serve",
-    "postinstall": "electron-builder install-app-deps",
-    "postuninstall": "electron-builder install-app-deps"
-  },
-  "main": "background.js",
-  "dependencies": {
-    "@types/uuid": "^8.0.0",
-    "class-transformer": "^0.3.1",
-    "core-js": "^3.6.5",
-    "reflect-metadata": "^0.1.13",
-    "register-service-worker": "^1.7.1",
-    "typescript": "^3.9.7",
-    "uuid": "^8.3.0",
-    "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-plugin-pwa": "~4.4.0",
-    "@vue/cli-plugin-router": "~4.4.0",
-    "@vue/cli-plugin-typescript": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "@vue/eslint-config-typescript": "^5.0.2",
-    "electron": "^9.0.0",
-    "electron-devtools-installer": "^3.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-vue": "^6.2.2",
-    "prettier": "^2.0.5",
-    "typescript": "~3.9.3",
-    "vue-cli-plugin-electron-builder": "~2.0.0-rc.4",
-    "vue-template-compiler": "^2.6.11"
-  },
-  "_id": "dnd-charsheet-v3@0.0.1",
-  "bugs": {
-    "url": "https://github.com/gottharsis/dnd-charsheet-v3/issues"
-  },
-  "homepage": "https://github.com/gottharsis/dnd-charsheet-v3#readme",
-  "license": "MIT",
-  "readme": "ERROR: No README data found!",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/gottharsis/dnd-charsheet-v3.git"
-  }
+    "name": "dnd-charsheet-v3",
+    "version": "0.0.1",
+    "private": true,
+    "description": "A web app to hold a character sheet for Dungeons and Dragons fifth edition",
+    "author": {
+        "name": "Ayush Nene",
+        "email": "ayush3108@gmail.com"
+    },
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint",
+        "electron:build": "vue-cli-service electron:build",
+        "electron:serve": "vue-cli-service electron:serve",
+        "postinstall": "electron-builder install-app-deps",
+        "postuninstall": "electron-builder install-app-deps"
+    },
+    "main": "background.js",
+    "dependencies": {
+        "@types/electron-devtools-installer": "^2.2.0",
+        "@types/uuid": "^8.0.0",
+        "class-transformer": "^0.3.1",
+        "core-js": "^3.6.5",
+        "reflect-metadata": "^0.1.13",
+        "register-service-worker": "^1.7.1",
+        "typescript": "^3.9.7",
+        "uuid": "^8.3.0",
+        "vue": "^2.6.11",
+        "vue-router": "^3.2.0"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^2.33.0",
+        "@typescript-eslint/parser": "^2.33.0",
+        "@vue/cli-plugin-babel": "~4.4.0",
+        "@vue/cli-plugin-eslint": "~4.4.0",
+        "@vue/cli-plugin-pwa": "~4.4.0",
+        "@vue/cli-plugin-router": "~4.4.0",
+        "@vue/cli-plugin-typescript": "~4.4.0",
+        "@vue/cli-service": "~4.4.0",
+        "@vue/eslint-config-prettier": "^6.0.0",
+        "@vue/eslint-config-typescript": "^5.0.2",
+        "electron": "^9.0.0",
+        "electron-devtools-installer": "^3.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-vue": "^6.2.2",
+        "prettier": "^2.0.5",
+        "vue-cli-plugin-electron-builder": "~2.0.0-rc.4",
+        "vue-template-compiler": "^2.6.11"
+    },
+    "_id": "dnd-charsheet-v3@0.0.1",
+    "bugs": {
+        "url": "https://github.com/gottharsis/dnd-charsheet-v3/issues"
+    },
+    "homepage": "https://github.com/gottharsis/dnd-charsheet-v3#readme",
+    "license": "MIT",
+    "readme": "ERROR: No README data found!",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gottharsis/dnd-charsheet-v3.git"
+    }
 }
