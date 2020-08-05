@@ -1,11 +1,6 @@
 import { ScoreAbility } from "./AbilityScores";
 import { Type } from "class-transformer";
 
-interface Skill {
-    name: String;
-    ability: ScoreAbility;
-}
-
 export class Proficiencies {
     @Type(() => String)
     armor: Set<String>;

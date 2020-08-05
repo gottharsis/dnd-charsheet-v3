@@ -1,8 +1,11 @@
 import { Type } from "class-transformer";
+import { ScoreAbility } from "../AbilityScores";
 
 export class MagicSource {
     name = "";
     spellSlotProgression = 0;
+    dc: number;
+    hitBonus: number;
     level = 0;
     @Type(() => String)
     knownSpells: Set<String>;
@@ -20,6 +23,8 @@ export class MagicSource {
         this.preparedSpells = new Set();
         this.alwaysPrepared = new Set();
         this.singleUseSpells = new Map();
+        this.dc = 8;
+        this.hitBonus = 0;
     }
 
     learnSpell(spell: string) {

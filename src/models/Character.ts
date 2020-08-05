@@ -15,6 +15,8 @@ export class Character {
     id: String;
     name: String;
     race: String;
+    size: String;
+    speed: String;
 
     @Type(() => Magic)
     magic: Magic;
@@ -56,5 +58,7 @@ export class Character {
         this.id = `character_${uuid()}`;
         this.abilityScores = new AbilityScores();
         this.proficiencies = new Proficiencies();
+        this.size = "med";
+        this.speed = "30 ft.";
     }
 }
