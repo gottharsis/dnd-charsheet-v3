@@ -1,4 +1,5 @@
-import { Type } from "class-transformer";
+import { Type, classToPlain, plainToClass } from "class-transformer";
+import "reflect-metadata";
 
 export class AbilityScore {
     score: number;
@@ -9,6 +10,8 @@ export class AbilityScore {
         return Math.floor((this.score - 10) / 2);
     }
 }
+
+export type ScoreAbility = "str" | "dex" | "con" | "int" | "wis" | "cha";
 
 export class AbilityScores {
     @Type(() => AbilityScore)

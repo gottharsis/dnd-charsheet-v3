@@ -8,6 +8,8 @@ import { Inventory } from "./Inventory";
 import { v4 as uuid } from "uuid";
 import { Feature } from "./Feature";
 import { Ability } from "./Ability";
+import { AbilityScore, AbilityScores } from "./AbilityScores";
+import { Proficiencies } from "./Proficiency";
 
 export class Character {
     id: String;
@@ -35,6 +37,12 @@ export class Character {
     @Type(() => Ability)
     abilities: Ability[];
 
+    @Type(() => AbilityScores)
+    abilityScores: AbilityScores;
+
+    @Type(() => Proficiencies)
+    proficiencies: Proficiencies;
+
     constructor() {
         this.name = "";
         this.race = "";
@@ -46,5 +54,7 @@ export class Character {
         this.features = [];
         this.abilities = [];
         this.id = `character_${uuid()}`;
+        this.abilityScores = new AbilityScores();
+        this.proficiencies = new Proficiencies();
     }
 }
