@@ -1,5 +1,7 @@
+import { ScoreAbility } from "../AbilityScores";
+
 export interface SourceMagic {
-    ability: string;
+    ability: ScoreAbility;
     progression: number;
 }
 

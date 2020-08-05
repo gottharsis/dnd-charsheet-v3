@@ -10,7 +10,7 @@
             "cha": 1
         },
         "size": "med",
-        "speed": 30,
+        "speed": "30",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "draconic"],
@@ -32,7 +32,7 @@
         },
         "senses": ["Darkvision 60ft"],
         "size": "medium",
-        "speed": 25,
+        "speed": "25",
         "proficiencies": {
             "weapons": ["battleaxe", "handaxe", "throwing hammer", "warhammer"],
             "tools": ["smith's tools", "brewer's tools", "mason's tools"]
@@ -55,7 +55,7 @@
         },
         "senses": ["Darkvision 60ft"],
         "size": "medium",
-        "speed": 25,
+        "speed": "25",
         "proficiencies": {
             "weapons": ["battleaxe", "handaxe", "throwing hammer", "warhammer"],
             "tools": ["smith's tools", "brewer's tools", "mason's tools"]
@@ -77,7 +77,7 @@
             "cha": 0
         },
         "size": "medium",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": { "skills": ["Perception"] },
         "features": [
@@ -97,7 +97,7 @@
             "cha": 0
         },
         "size": "medium",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": {
             "weapons": ["longsword", "shortsword", "longbow", "shortbow"],
@@ -121,7 +121,7 @@
             "cha": 0
         },
         "size": "medium",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": {
             "weapons": ["longsword", "shortsword", "longbow", "shortbow"],
@@ -144,7 +144,7 @@
             "cha": 1
         },
         "size": "medium",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 120 ft"],
         "features": [
             "adv. on saving throws vs charmed, magic cannot put you to sleep",
@@ -169,7 +169,7 @@
             "cha": 0
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": {},
         "languages": ["common", "gnomish"],
@@ -188,7 +188,7 @@
             "cha": 0
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": {},
         "languages": ["common", "gnomish"],
@@ -209,7 +209,7 @@
             "cha": 0
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": ["Darkvision 60 ft"],
         "proficiencies": {},
         "languages": ["common", "gnomish"],
@@ -230,7 +230,7 @@
             "cha": 0
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "halfling"],
@@ -250,7 +250,7 @@
             "cha": 1
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "halfling"],
@@ -271,7 +271,7 @@
             "cha": 0
         },
         "size": "small",
-        "speed": 25,
+        "speed": "25",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "halfling"],
@@ -292,7 +292,7 @@
             "cha": 2
         },
         "size": "med",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 60 ft"],
         "languages": ["common", "elvish", "choose"],
         "features": [
@@ -312,7 +312,7 @@
             "cha": 1
         },
         "size": "medium",
-        "speed": 30,
+        "speed": "30",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "choose"],
@@ -329,7 +329,7 @@
             "cha": 0
         },
         "size": "med",
-        "speed": 30,
+        "speed": "30",
         "senses": [],
         "proficiencies": {},
         "languages": ["common", "choose"],
@@ -350,7 +350,7 @@
             "cha": 2
         },
         "size": "med",
-        "speed": 30,
+        "speed": "30",
         "senses": ["Darkvision 60 ft"],
         "languages": ["common", "infernal"],
         "features": [

@@ -12,15 +12,15 @@ export class DeathSaves {
     }
 }
 
-class HitDie {
+export class HitDie {
     max: number;
     remaining: number;
     die: number;
 
-    constructor() {
-        this.max = 0;
-        this.remaining = 0;
-        this.die = 0;
+    constructor(hd?: { max: number; remaining?: number; die: number }) {
+        this.max = hd?.max ?? 0;
+        this.remaining = hd?.remaining ?? hd?.max ?? 0;
+        this.die = hd?.die ?? 0;
     }
 
     /**
@@ -49,15 +49,15 @@ export class Health {
     tempHp: number;
     maxHp: number;
 
-    @Transform(
-        (value) =>
-            new Map(
-                Object.entries(value).map(([k, v]) => [Number(k), Number(v)])
-            ),
-        {
-            toClassOnly: true,
-        }
-    )
+    // @Transform(
+    //     (value) =>
+    //         new Map(
+    //             Object.entries(value).map(([k, v]) => [Number(k), Number(v)])
+    //         ),
+    //     {
+    //         toClassOnly: true,
+    //     }
+    // )
     @Type(() => HitDie)
     hitDice: HitDie[];
     @Type(() => DeathSaves)

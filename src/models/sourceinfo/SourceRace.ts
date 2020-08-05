@@ -14,4 +14,5 @@ export interface SourceRace {
     proficiencies: SourceProficiencies;
     languages: string[];
     features: string[];
+    speed: string;
 }
