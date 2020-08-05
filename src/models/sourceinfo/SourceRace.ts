@@ -11,7 +11,7 @@ export interface SourceRace {
     ability: Record<ScoreAbility, number>;
     size: string;
     senses: string[];
-    proficiencies: SourceProficiencies;
+    proficiencies?: SourceProficiencies;
     languages: string[];
     features: string[];
     speed: string;
