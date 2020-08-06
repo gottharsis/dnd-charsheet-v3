@@ -3,6 +3,7 @@ import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
 import "./plugins/element";
+import "reflect-metadata";
 
 Vue.config.productionTip = false;
 

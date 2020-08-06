@@ -1,14 +1,14 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
-
+import { CreatorRoutes } from "./creator";
+import Welcome from "@/views/Welcome.vue";
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
     {
         path: "/",
-        name: "Home",
-        component: Home,
+        name: "Welcome",
+        component: Welcome,
     },
     {
         path: "/about",
@@ -19,6 +19,7 @@ const routes: Array<RouteConfig> = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
+    CreatorRoutes,
 ];
 
 const router = new VueRouter({
