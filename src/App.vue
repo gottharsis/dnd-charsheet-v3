@@ -37,8 +37,15 @@ export default {
     padding-top: 60px;
 }
 
+html {
+    height: 100%;
+}
 body {
+    min-height: 100%;
     margin: 0;
+    box-sizing: border-box;
+}
+body {
     padding: 8px;
     background: $--color-white;
 }
