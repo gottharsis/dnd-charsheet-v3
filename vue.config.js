@@ -4,4 +4,7 @@ module.exports = {
             nodeIntegration: true,
         },
     },
+    configureWebpack: {
+        // target: "node",
+    },
 };

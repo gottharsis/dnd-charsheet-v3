@@ -36,10 +36,22 @@ import PlayerClass from "./Creator/PlayerClass.vue";
 import Confirmation from "./Creator/Confirmation.vue";
 import { saveCharacter } from "@/persist-data/persistCharacter";
 import { store } from "@/store/store";
+
+interface Step {
+    name: string;
+    component: any;
+}
+
+interface CreatorData {
+    creator: CharacterCreator;
+    steps: Step[];
+    stepIndex: number;
+}
+
 export default Vue.extend({
     name: "Creator",
     data() {
-        return {
+        const d: CreatorData = {
             creator: new CharacterCreator(),
             steps: [
                 {
@@ -65,9 +77,10 @@ export default Vue.extend({
             ],
             stepIndex: 0,
         };
+        return d;
     },
     computed: {
-        currentStep() {
+        currentStep(): any {
             return this.steps[this.stepIndex].component;
         },
     },
@@ -81,8 +94,15 @@ export default Vue.extend({
     methods: {
         async createCharacter() {
             const character = this.creator.build();
-            await saveCharacter(character);
-            store.character = character;
+            console.log(character);
+            try {
+                await saveCharacter(character);
+                console.log("saved character");
+                store.character = character;
+            } catch (e) {
+                console.log("Failed to Create");
+                console.log(e);
+            }
             // TODO: navigate to character view
         },
     },

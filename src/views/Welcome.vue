@@ -28,13 +28,12 @@
                         </el-col>
                     </el-row>
                 </div>
-
-                <el-row>
-                    <el-button @click="navigateToCreator">
-                        Create new Character
-                    </el-button>
-                </el-row>
             </template>
+            <el-row>
+                <el-button @click="navigateToCreator">
+                    Create new Character
+                </el-button>
+            </el-row>
         </el-main>
     </el-container>
 </template>
@@ -56,11 +55,11 @@ export default {
     },
     async mounted() {
         try {
-            // const characters = await readIndexFile();
-            const characters = {
-                idA: "Aurore",
-                idB: "Default name 2",
-            };
+            const characters = await readIndexFile();
+            // const characters = {
+            //     idA: "Aurore",
+            //     idB: "Default name 2",
+            // };
             this.characters = characters;
         } catch (e) {
             console.error(e);
