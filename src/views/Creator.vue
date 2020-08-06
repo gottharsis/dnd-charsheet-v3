@@ -16,19 +16,27 @@
             </el-aside>
 
             <el-main>
-                <component :is="currentStep" :creator="creator" />
+                <component
+                    :is="currentStep"
+                    :creator="creator"
+                    @create-character="createCharacter"
+                />
             </el-main>
         </el-container>
     </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { CharacterCreator } from "@/creator/CharacterCreator";
 import BasicInfo from "./Creator/BasicInfo.vue";
-import Race from "./Creator/Race";
-import AbilityScores from "./Creator/AbilityScores";
-import PlayerClass from "./Creator/PlayerClass";
-export default {
+import Race from "./Creator/Race.vue";
+import AbilityScores from "./Creator/AbilityScores.vue";
+import PlayerClass from "./Creator/PlayerClass.vue";
+import Confirmation from "./Creator/Confirmation.vue";
+import { saveCharacter } from "@/persist-data/persistCharacter";
+import { store } from "@/store/store";
+export default Vue.extend({
     name: "Creator",
     data() {
         return {
@@ -50,6 +58,10 @@ export default {
                     name: "Initial Class",
                     component: PlayerClass,
                 },
+                {
+                    name: "Confirmation",
+                    component: Confirmation,
+                },
             ],
             stepIndex: 0,
         };
@@ -64,8 +76,17 @@ export default {
         Race,
         AbilityScores,
         PlayerClass,
+        Confirmation,
     },
-};
+    methods: {
+        async createCharacter() {
+            const character = this.creator.build();
+            await saveCharacter(character);
+            store.character = character;
+            // TODO: navigate to character view
+        },
+    },
+});
 </script>
 
 <style lang="scss" scoped>
