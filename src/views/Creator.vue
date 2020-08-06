@@ -26,6 +26,7 @@
 import { CharacterCreator } from "@/creator/CharacterCreator";
 import BasicInfo from "./Creator/BasicInfo.vue";
 import Race from "./Creator/Race";
+import AbilityScores from "./Creator/AbilityScores";
 export default {
     name: "Creator",
     data() {
@@ -40,6 +41,10 @@ export default {
                     name: "Race",
                     component: Race,
                 },
+                {
+                    name: "Ability Scores",
+                    component: AbilityScores,
+                },
             ],
             stepIndex: 0,
         };
@@ -52,6 +57,7 @@ export default {
     components: {
         BasicInfo,
         Race,
+        AbilityScores,
     },
 };
 </script>

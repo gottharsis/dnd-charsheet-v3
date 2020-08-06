@@ -50,7 +50,7 @@
                         {{ stat.toUpperCase() }}
                         <el-input
                             type="number"
-                            v-model="customRace.ability[stat]"
+                            v-model.number="customRace.ability[stat]"
                         />
                     </el-col>
                 </el-row>
@@ -158,6 +158,7 @@ export default Vue.extend({
         },
         useCustomRace() {
             this.usingCustom = true;
+            this.creator.race = this.customRace;
         },
     },
 });
