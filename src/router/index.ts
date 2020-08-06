@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import { CreatorRoutes } from "./creator";
 import Welcome from "@/views/Welcome.vue";
+import Character from "@/views/Character.vue";
 Vue.use(VueRouter);
 
 const routes: Array<RouteConfig> = [
@@ -24,6 +25,11 @@ const routes: Array<RouteConfig> = [
         path: "/creator",
         name: "Creator",
         component: () => import("@/views/Creator.vue"),
+    },
+    {
+        path: "/character",
+        name: "Character",
+        component: Character,
     },
 ];
 

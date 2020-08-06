@@ -63,7 +63,7 @@ import {
     deleteCharacter,
 } from "@/persist-data/persistCharacter";
 import { chunk } from "@/util/chunk";
-import { store } from "@/store/store";
+import { store } from "@/store";
 
 export default Vue.extend({
     data() {
@@ -109,7 +109,7 @@ export default Vue.extend({
             this.navigateToMainPage();
         },
         navigateToMainPage() {
-            console.log(store.character.name);
+            this.$router.push("/character");
         },
         async remove(id: string) {
             deleteCharacter(id);

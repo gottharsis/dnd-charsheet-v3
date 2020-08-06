@@ -35,7 +35,7 @@ import AbilityScores from "./Creator/AbilityScores.vue";
 import PlayerClass from "./Creator/PlayerClass.vue";
 import Confirmation from "./Creator/Confirmation.vue";
 import { saveCharacter } from "@/persist-data/persistCharacter";
-import { store } from "@/store/store";
+import { store } from "@/store";
 
 interface Step {
     name: string;

@@ -41,12 +41,17 @@ html {
     height: 100%;
 }
 body {
-    min-height: 100%;
+    height: 100%;
     margin: 0;
     box-sizing: border-box;
 }
 body {
     padding: 8px;
     background: $--color-white;
+}
+
+#app {
+    height: 100%;
+    box-sizing: border-box;
 }
 </style>

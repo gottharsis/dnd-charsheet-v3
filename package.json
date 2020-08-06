@@ -28,6 +28,7 @@
     "element-ui": "^2.4.5",
     "reflect-metadata": "^0.1.13",
     "register-service-worker": "^1.7.1",
+    "rfdc": "^1.1.4",
     "typescript": "^3.9.7",
     "uuid": "^8.3.0",
     "vue": "^2.6.11",

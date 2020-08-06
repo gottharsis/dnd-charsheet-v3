@@ -9,9 +9,25 @@ export class AbilityScore {
     get modifier() {
         return Math.floor((this.score - 10) / 2);
     }
+
+    get modifierString() {
+        if (this.modifier >= 0) {
+            return `+${this.modifier}`;
+        } else {
+            return String(this.modifier);
+        }
+    }
 }
 
 export type ScoreAbility = "str" | "dex" | "con" | "int" | "wis" | "cha";
+export const abilityOrder: ScoreAbility[] = [
+    "str",
+    "dex",
+    "con",
+    "int",
+    "wis",
+    "cha",
+];
 
 export class AbilityScores {
     @Type(() => AbilityScore)
@@ -39,14 +55,7 @@ export class AbilityScores {
     /**
      * Represent as an array of tuples [stat, score]
      */
-    getArrayForm(): [string, AbilityScore][] {
-        return [
-            ["str", this.str],
-            ["dex", this.dex],
-            ["con", this.con],
-            ["int", this.int],
-            ["wis", this.wis],
-            ["cha", this.cha],
-        ];
+    getArrayForm(): [ScoreAbility, AbilityScore][] {
+        return abilityOrder.map((stat) => [stat, this[stat]]);
     }
 }
