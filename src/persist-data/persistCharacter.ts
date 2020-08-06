@@ -9,7 +9,6 @@ import { join } from "path";
 const userPath = remote.app.getPath("userData");
 
 const characterPath = join(userPath, "characters");
-console.log("Character Path: " + characterPath);
 const indexPath = join(characterPath, "index.json");
 
 export const readIndexFile = async (): Promise<Record<string, string>> => {
@@ -32,26 +31,20 @@ export const writeIndexFile = async (index: Record<string, string>) => {
     }
 };
 export const saveCharacter = async (character: Character) => {
-    console.log("in save character");
     const filename = character.id + ".json";
 
     const { id, name } = character;
     const plainObject = classToPlain(character);
     const json = JSON.stringify(plainObject);
-    console.log("JSON form: " + json);
 
     const filepath = join(characterPath, filename);
-    console.log("filename: " + filepath);
 
     try {
         const indexData = await readIndexFile();
-        console.log("read index data");
         indexData[id] = name;
         await writeIndexFile(indexData);
-        console.log("wrote index file");
         // await fsp.writeFile(filepath, json);
         fs.writeFileSync(filepath, json);
-        console.log("wrote to file");
     } catch (error) {
         console.error("Unable to save file!!");
         console.error(error);

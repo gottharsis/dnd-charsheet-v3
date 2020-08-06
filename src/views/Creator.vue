@@ -94,14 +94,12 @@ export default Vue.extend({
     methods: {
         async createCharacter() {
             const character = this.creator.build();
-            console.log(character);
             try {
                 await saveCharacter(character);
-                console.log("saved character");
                 store.character = character;
             } catch (e) {
-                console.log("Failed to Create");
-                console.log(e);
+                console.error("Failed to Create");
+                console.error(e);
             }
             // TODO: navigate to character view
         },
