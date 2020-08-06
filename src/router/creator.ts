@@ -12,5 +12,8 @@ export const CreatorRoutes: RouteConfig = {
             name: "Creator_basicInfo",
             component: BasicInfo,
         },
+        {
+            path: "",
+        },
     ],
 };

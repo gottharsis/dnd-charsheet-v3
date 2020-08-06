@@ -19,7 +19,12 @@ const routes: Array<RouteConfig> = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/About.vue"),
     },
-    CreatorRoutes,
+    // CreatorRoutes,
+    {
+        path: "/creator",
+        name: "Creator",
+        component: () => import("@/views/Creator.vue"),
+    },
 ];
 
 const router = new VueRouter({

@@ -8,6 +8,7 @@
                         v-for="({ name }, i) in steps"
                         :key="i"
                         :class="{ 'active-link': i === stepIndex }"
+                        @click="stepIndex = i"
                     >
                         {{ name }}
                     </el-menu-item>
@@ -24,6 +25,7 @@
 <script>
 import { CharacterCreator } from "@/creator/CharacterCreator";
 import BasicInfo from "./Creator/BasicInfo.vue";
+import Race from "./Creator/Race";
 export default {
     name: "Creator",
     data() {
@@ -36,7 +38,7 @@ export default {
                 },
                 {
                     name: "Race",
-                    component: null,
+                    component: Race,
                 },
             ],
             stepIndex: 0,
@@ -49,6 +51,7 @@ export default {
     },
     components: {
         BasicInfo,
+        Race,
     },
 };
 </script>
