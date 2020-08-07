@@ -28,6 +28,12 @@
                         </el-form-item>
                     </el-col>
                 </el-row>
+                <el-row>
+                    <el-button type="danger" @click="deleteClass(cl.name)">
+                        <i class="far fa-trash-alt"></i>
+                        Delete Class
+                    </el-button>
+                </el-row>
             </div>
             <h2>Add new Class</h2>
             <el-row>
@@ -129,6 +135,11 @@ export default Vue.extend({
                 this.chosenClass = undefined;
                 this.chosenClassLevel = 1;
                 this.chosenClassSubclass = "";
+            }
+        },
+        deleteClass(className: string) {
+            if (this.playerClass.classes.length > 1) {
+                this.playerClass.removeClass(className);
             }
         },
     },
