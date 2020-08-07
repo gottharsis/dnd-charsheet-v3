@@ -2,7 +2,7 @@
     <div id="creator-player-class">
         <h1>Choose Class</h1>
 
-        <el-select v-model="creator.class" placeholder="Class">
+        <el-select v-model="creator.class" placeholder="Class" value-key="name">
             <el-option
                 v-for="cl in classes"
                 :key="cl.name"

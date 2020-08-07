@@ -41,7 +41,7 @@ html {
     height: 100%;
 }
 body {
-    height: 100%;
+    min-height: 100%;
     margin: 0;
     box-sizing: border-box;
 }
@@ -51,7 +51,7 @@ body {
 }
 
 #app {
-    height: 100%;
+    min-height: 100%;
     box-sizing: border-box;
 }
 </style>

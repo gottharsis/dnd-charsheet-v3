@@ -85,7 +85,7 @@
         </template>
         <template v-else>
             <el-row>
-                <el-select v-model="creator.race" size="large">
+                <el-select v-model="creator.race" size="large" value-key="name">
                     <el-option
                         v-for="race in races"
                         :key="race.name"

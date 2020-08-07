@@ -1,4 +1,5 @@
 <template>
+    <!-- <div style="overflow-y: scroll !important;"> -->
     <el-container>
         <el-header>
             <el-button type="success" @click="save">Submit</el-button>
@@ -8,8 +9,10 @@
             <edit-basic-info />
             <edit-ability-scores />
             <edit-health />
+            <edit-classes />
         </el-main>
     </el-container>
+    <!-- </div> -->
 </template>
 
 <script lang="ts">
@@ -22,6 +25,7 @@ import klona from "klona";
 import EditBasicInfo from "./EditCharacter/EditBasicInfo.vue";
 import EditAbilityScores from "./EditCharacter/EditAbilityScores.vue";
 import EditHealth from "./EditCharacter/EditHealth.vue";
+import EditClasses from "./EditCharacter/EditClasses.vue";
 
 // const rfdc = rfdcModule();
 export default Vue.extend({
@@ -54,6 +58,7 @@ export default Vue.extend({
         EditBasicInfo,
         EditAbilityScores,
         EditHealth,
+        EditClasses,
     },
 });
 </script>

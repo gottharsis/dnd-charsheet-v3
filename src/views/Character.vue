@@ -8,7 +8,6 @@
             <!-- Edit Dialog -->
             <el-drawer
                 title="Edit Character"
-                :with-header="false"
                 :visible.sync="isEditDrawerVisible"
                 :destroy-on-close="true"
             >
