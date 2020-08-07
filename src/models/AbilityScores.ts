@@ -58,4 +58,12 @@ export class AbilityScores {
     getArrayForm(): [ScoreAbility, AbilityScore][] {
         return abilityOrder.map((stat) => [stat, this[stat]]);
     }
+
+    update(scores: Partial<Record<ScoreAbility, number>>) {
+        Object.entries(scores).forEach(([stat, score]) => {
+            if (score) {
+                this[stat as ScoreAbility].score = score;
+            }
+        });
+    }
 }
