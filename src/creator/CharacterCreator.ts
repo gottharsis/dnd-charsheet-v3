@@ -5,8 +5,7 @@ import { AbilityScores } from "@/models/AbilityScores";
 import { Ability } from "@/models/Ability";
 import { Proficiencies } from "@/models/Proficiency";
 import { Feature } from "@/models/Feature";
-import { HitDie } from "@/models/Health";
-import { PClass } from "@/models/PlayerClass";
+import { PClass, HitDie } from "@/models/PlayerClass";
 import { MagicSource } from "@/models/magic/MagicSource";
 
 /**
@@ -60,12 +59,6 @@ export class CharacterCreator {
 
         // health
         const hd = this.class.hitDice;
-        char.health.hitDice.push(
-            new HitDie({
-                max: 1,
-                die: hd,
-            })
-        );
 
         char.health.maxHp = hd + this.abilityScores.con.modifier;
         char.health.currentHp = char.health.maxHp;

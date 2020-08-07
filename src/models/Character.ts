@@ -63,20 +63,4 @@ export class Character {
         this.size = "med";
         this.speed = "30 ft.";
     }
-
-    addClass(cl: SourceClass, level = 1, subclass = "") {
-        const pcl = new PClass();
-        pcl.name = cl.name;
-        pcl.level = level;
-        pcl.subclass = subclass;
-        this.playerClass.classes.push(pcl);
-        if (cl.spellcasting) {
-            const magicSource = new MagicSource();
-            magicSource.name = cl.name;
-            magicSource.level = level;
-            magicSource.spellSlotProgression = cl.spellcasting.progression;
-
-            // TODO: finish
-        }
-    }
 }

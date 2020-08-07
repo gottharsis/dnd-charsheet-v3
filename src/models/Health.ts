@@ -12,38 +12,6 @@ export class DeathSaves {
     }
 }
 
-export class HitDie {
-    max: number;
-    remaining: number;
-    die: number;
-
-    constructor(hd?: { max: number; remaining?: number; die: number }) {
-        this.max = hd?.max ?? 0;
-        this.remaining = hd?.remaining ?? hd?.max ?? 0;
-        this.die = hd?.die ?? 0;
-    }
-
-    /**
-     * Uses some hit dice
-     * @param amount the number of hit dice to use of this level
-     * @return true if it is valid else false
-     */
-    use(amount: number): boolean {
-        if (amount <= this.remaining) {
-            this.remaining -= amount;
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    restore(amount?: number) {
-        amount = amount ?? this.max;
-        this.remaining += amount;
-        this.remaining = Math.min(this.remaining, this.max);
-    }
-}
-
 export class Health {
     currentHp: number;
     tempHp: number;
@@ -58,8 +26,7 @@ export class Health {
     //         toClassOnly: true,
     //     }
     // )
-    @Type(() => HitDie)
-    hitDice: HitDie[];
+
     @Type(() => DeathSaves)
     deathSaves: DeathSaves;
 
@@ -68,7 +35,6 @@ export class Health {
         this.tempHp = 0;
         this.maxHp = 0;
         this.deathSaves = new DeathSaves();
-        this.hitDice = [];
     }
     damage(amt: number) {
         // temp hp logic

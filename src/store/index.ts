@@ -20,7 +20,7 @@ testCharacter.abilityScores.update({
 });
 
 testCharacter.race = "Bugbear";
-testCharacter.addClass(SourceClasses[3] as SourceClass);
+testCharacter.playerClass.addClass(SourceClasses[3] as SourceClass);
 
 export const store = Vue.observable(new Store());
 store.character = testCharacter;
