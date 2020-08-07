@@ -7,6 +7,7 @@
         <el-main>
             <edit-basic-info />
             <edit-ability-scores />
+            <edit-health />
         </el-main>
     </el-container>
 </template>
@@ -20,6 +21,7 @@ import klona from "klona";
 
 import EditBasicInfo from "./EditCharacter/EditBasicInfo.vue";
 import EditAbilityScores from "./EditCharacter/EditAbilityScores.vue";
+import EditHealth from "./EditCharacter/EditHealth.vue";
 
 // const rfdc = rfdcModule();
 export default Vue.extend({
@@ -51,6 +53,7 @@ export default Vue.extend({
     components: {
         EditBasicInfo,
         EditAbilityScores,
+        EditHealth,
     },
 });
 </script>
