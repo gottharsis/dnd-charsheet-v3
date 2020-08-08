@@ -1,125 +1,125 @@
 [
-  {
-    "id": 1,
-    "name": "Athletics",
-    "abilityId": 0,
-    "stat": "STR"
-  },
+    {
+        "id": 1,
+        "name": "Athletics",
+        "abilityId": 0,
+        "stat": "str"
+    },
 
-  {
-    "id": 2,
-    "name": "Acrobatics",
-    "abilityId": 1,
-    "stat": "DEX"
-  },
+    {
+        "id": 2,
+        "name": "Acrobatics",
+        "abilityId": 1,
+        "stat": "dex"
+    },
 
-  {
-    "id": 3,
-    "name": "Sleight of Hand",
-    "abilityId": 1,
-    "stat": "DEX"
-  },
+    {
+        "id": 3,
+        "name": "Sleight of Hand",
+        "abilityId": 1,
+        "stat": "dex"
+    },
 
-  {
-    "id": 4,
-    "name": "Stealth",
-    "abilityId": 1,
-    "stat": "DEX"
-  },
+    {
+        "id": 4,
+        "name": "Stealth",
+        "abilityId": 1,
+        "stat": "dex"
+    },
 
-  {
-    "id": 5,
-    "name": "Arcana",
-    "abilityId": 3,
-    "stat": "INT"
-  },
-  {
-    "id": 6,
-    "name": "History",
+    {
+        "id": 5,
+        "name": "Arcana",
+        "abilityId": 3,
+        "stat": "int"
+    },
+    {
+        "id": 6,
+        "name": "History",
 
-    "abilityId": 3,
-    "stat": "INT"
-  },
-  {
-    "id": 8,
-    "name": "Investigation",
+        "abilityId": 3,
+        "stat": "int"
+    },
+    {
+        "id": 8,
+        "name": "Investigation",
 
-    "abilityId": 3,
-    "stat": "INT"
-  },
-  {
-    "id": 9,
-    "name": "Nature",
+        "abilityId": 3,
+        "stat": "int"
+    },
+    {
+        "id": 9,
+        "name": "Nature",
 
-    "abilityId": 3,
-    "stat": "INT"
-  },
-  {
-    "id": 10,
-    "name": "Religion",
-    "abilityId": 3,
-    "stat": "INT"
-  },
+        "abilityId": 3,
+        "stat": "int"
+    },
+    {
+        "id": 10,
+        "name": "Religion",
+        "abilityId": 3,
+        "stat": "int"
+    },
 
-  {
-    "id": 11,
-    "name": "Animal Handling",
+    {
+        "id": 11,
+        "name": "Animal Handling",
 
-    "abilityId": 4,
-    "stat": "WIS"
-  },
-  {
-    "id": 12,
-    "name": "Insight",
+        "abilityId": 4,
+        "stat": "wis"
+    },
+    {
+        "id": 12,
+        "name": "Insight",
 
-    "abilityId": 4,
-    "stat": "WIS"
-  },
-  {
-    "id": 13,
-    "name": "Medicine",
+        "abilityId": 4,
+        "stat": "wis"
+    },
+    {
+        "id": 13,
+        "name": "Medicine",
 
-    "abilityId": 4,
-    "stat": "WIS"
-  },
-  {
-    "id": 14,
-    "name": "Perception",
+        "abilityId": 4,
+        "stat": "wis"
+    },
+    {
+        "id": 14,
+        "name": "Perception",
 
-    "abilityId": 4,
-    "stat": "WIS"
-  },
-  {
-    "id": 15,
-    "name": "Survival",
-    "abilityId": 4,
-    "stat": "WIS"
-  },
+        "abilityId": 4,
+        "stat": "wis"
+    },
+    {
+        "id": 15,
+        "name": "Survival",
+        "abilityId": 4,
+        "stat": "wis"
+    },
 
-  {
-    "id": 16,
-    "name": "Deception",
+    {
+        "id": 16,
+        "name": "Deception",
 
-    "abilityId": 5,
-    "stat": "CHA"
-  },
-  {
-    "id": 17,
-    "name": "Intimidation",
+        "abilityId": 5,
+        "stat": "cha"
+    },
+    {
+        "id": 17,
+        "name": "Intimidation",
 
-    "abilityId": 5,
-    "stat": "CHA"
-  },
-  {
-    "id": 18,
-    "name": "Performance",
-    "stat": "CHA",
-    "abilityId": 5
-  },
-  {
-    "id": 19,
-    "name": "Persuasion",
-    "stat": "CHA",
-    "abilityId": 5
-  }
+        "abilityId": 5,
+        "stat": "cha"
+    },
+    {
+        "id": 18,
+        "name": "Performance",
+        "stat": "cha",
+        "abilityId": 5
+    },
+    {
+        "id": 19,
+        "name": "Persuasion",
+        "stat": "cha",
+        "abilityId": 5
+    }
 ]

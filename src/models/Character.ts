@@ -12,6 +12,7 @@ import { AbilityScore, AbilityScores } from "./AbilityScores";
 import { Proficiencies } from "./Proficiency";
 import { SourceClass } from "./sourceinfo/SourceClass";
 import { MagicSource } from "./magic/MagicSource";
+import { Skill } from "./sourceinfo/SourceSkill";
 
 export class Character {
     id: string;
@@ -62,5 +63,14 @@ export class Character {
         this.proficiencies = new Proficiencies();
         this.size = "med";
         this.speed = "30 ft.";
+    }
+
+    skillModifier(skill: Skill): number {
+        console.log("In skillModifier, ability score is " + skill.stat);
+        const abilityMod = this.abilityScores[skill.stat].modifier;
+        const prof =
+            (this.proficiencies.skills.get(skill.name) ?? 0) *
+            this.playerClass.proficiencyBonus;
+        return abilityMod + prof;
     }
 }
