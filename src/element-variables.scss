@@ -4,7 +4,8 @@ found in element-ui/packages/theme-chalk/src/common/var.scss.
 For example, to overwrite the theme color:
 */
 
-@import "themes/horizon.scss";
+@import "styles/horizon.scss";
+@import "styles/typography.scss";
 
 $--color-primary: $elm;
 $--color-black: $black;

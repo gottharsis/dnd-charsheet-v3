@@ -49,15 +49,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-@import "@/themes/horizon.scss";
+@import "@/styles/horizon.scss";
 
-#skills {
-    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12), 0 0 6px rgba(0, 0, 0, 0.04);
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
-    padding: 10px;
-    background: $background-alt;
-    border-radius: 1px;
-}
 .skill-cell {
     background: $background-alt;
 }

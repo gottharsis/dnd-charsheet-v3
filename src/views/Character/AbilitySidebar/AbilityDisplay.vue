@@ -27,7 +27,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import "@/themes/horizon.scss";
+@import "@/styles/horizon.scss";
 .ability-score-display {
     margin: 20px;
     flex: 1;

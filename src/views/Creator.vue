@@ -108,7 +108,7 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@import "@/themes/horizon.scss";
+@import "@/styles/horizon.scss";
 .active-link {
     background: $accent;
     color: $crimson;

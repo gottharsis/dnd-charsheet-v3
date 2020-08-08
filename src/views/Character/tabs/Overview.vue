@@ -1,9 +1,42 @@
 <template>
     <div id="overview">
         <h1>Overview</h1>
-        <el-row>
+        <el-row :gutter="20">
             <el-col :span="8">
-                <skills />
+                <el-card class="overview-card"><skills /></el-card>
+            </el-col>
+            <el-col :span="16">
+                <el-row :gutter="20">
+                    <el-col :span="6">
+                        <el-card class="overview-card">
+                            <div slot="header">
+                                AC
+                            </div>
+                            <!-- <h3>AC</h3> -->
+                            <div class="major-number">{{ ac }}</div>
+                        </el-card>
+                    </el-col>
+
+                    <el-col :span="6">
+                        <el-card class="overview-card">
+                            <div slot="header">
+                                SPEED
+                            </div>
+                            <!-- <h3>SPEED</h3> -->
+                            <div class="major-number">{{ speed }}</div>
+                        </el-card>
+                    </el-col>
+
+                    <el-col :span="6">
+                        <el-card class="overview-card">
+                            <div slot="header">
+                                SIZE
+                            </div>
+                            <!-- <h3>SPEED</h3> -->
+                            <div class="major-number">{{ size }}</div>
+                        </el-card>
+                    </el-col>
+                </el-row>
             </el-col>
         </el-row>
     </div>
@@ -12,11 +45,39 @@
 <script lang="ts">
 import Vue from "vue";
 import Skills from "../sections/Skills.vue";
+import { Character } from "@/models/Character";
+import { store } from "@/store";
 export default Vue.extend({
     name: "OverviewTab",
     components: {
         Skills,
     },
+    computed: {
+        character(): Character {
+            return store.character;
+        },
+        ac(): number {
+            return this.character.armor.ac;
+        },
+        speed(): string {
+            return this.character.speed;
+        },
+        size(): string {
+            return this.character.size;
+        },
+    },
 });
 </script>
-<style></style>
+<style lang="scss">
+@import "@/styles/horizon.scss";
+.overview-card {
+    .el-card__body {
+        background: $background-alt;
+    }
+
+    .el-card__header {
+        background: $accent;
+        // color: $lightText;
+    }
+}
+</style>
