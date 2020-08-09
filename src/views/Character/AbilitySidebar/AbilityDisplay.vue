@@ -29,7 +29,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 @import "@/styles/horizon.scss";
 .ability-score-display {
-    margin: 20px;
+    margin: 10px;
     flex: 1;
 
     .stat-name {

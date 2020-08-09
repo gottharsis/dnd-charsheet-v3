@@ -8,7 +8,7 @@
             :show-header="false"
         >
             <el-table-column prop="skill" label="Skill"></el-table-column>
-            <el-table-column prop="stat" label="Stat" />
+            <!-- <el-table-column prop="stat" label="Stat" /> -->
             <el-table-column prop="modifier" label="Bonus" />
         </el-table>
     </div>

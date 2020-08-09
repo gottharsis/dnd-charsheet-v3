@@ -9,7 +9,7 @@
                 <!-- First Row -->
                 <el-row :gutter="20">
                     <h2>Basic Stats</h2>
-                    <el-col :span="6">
+                    <el-col :span="8">
                         <el-card class="overview-card">
                             <div slot="header">
                                 AC
@@ -19,7 +19,7 @@
                         </el-card>
                     </el-col>
 
-                    <el-col :span="6">
+                    <el-col :span="8">
                         <el-card class="overview-card">
                             <div slot="header">
                                 SPEED
@@ -29,7 +29,7 @@
                         </el-card>
                     </el-col>
 
-                    <el-col :span="6">
+                    <el-col :span="8">
                         <el-card class="overview-card">
                             <div slot="header">
                                 SIZE

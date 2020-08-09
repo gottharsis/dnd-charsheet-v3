@@ -1,11 +1,13 @@
 <template>
-    <div class="column">
-        <ability-display
-            v-for="[stat, abScore] in abilityScoresArray"
-            :key="stat"
-            :stat="stat"
-            :score="abScore"
-        />
+    <div id="ability-scores">
+        <div class="column" :style="style">
+            <ability-display
+                v-for="[stat, abScore] in abilityScoresArray"
+                :key="stat"
+                :stat="stat"
+                :score="abScore"
+            />
+        </div>
     </div>
 </template>
 
@@ -28,14 +30,28 @@ export default Vue.extend({
         abilityScoresArray(): [ScoreAbility, AbilityScore][] {
             return this.character.abilityScores.getArrayForm();
         },
+        style(): Record<string, any> {
+            return {
+                "margin-top": `${this.offset}px`,
+            };
+        },
     },
     data() {
         return {
             abilityOrder,
+            offset: 0,
         };
     },
     components: {
         AbilityDisplay,
+    },
+    mounted() {
+        document.addEventListener("scroll", this.updateOffset);
+    },
+    methods: {
+        updateOffset() {
+            this.offset = Math.max(window.scrollY - 60, 0);
+        },
     },
 });
 </script>
@@ -45,5 +61,6 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
     height: calc(100vh - 76px);
+    transition: margin-top 0.2s linear;
 }
 </style>

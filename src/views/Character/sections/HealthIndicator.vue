@@ -1,30 +1,34 @@
 <template>
     <div id="health-indicator">
-        <h3 style="margin: 0;">Health</h3>
-        <el-row>
+        <h3>Health</h3>
+        <el-row :gutter="20">
             <el-col :span="12">
                 <el-card class="overview-card">
-                    <h4>Current Health</h4>
-                    <span class="major-number">{{ currentHp }}</span>
-                    / {{ maxHp }}
-                    <template v-if="tempHp > 0">
+                    <el-form>
+                        <h4>Current Health</h4>
+                        <span class="major-number">{{ currentHp }}</span>
+                        / {{ maxHp }}
                         <h4>Temp HP</h4>
-                        <div class="major-number">
-                            {{ tempHp }}
-                        </div>
-                    </template>
+                        <el-input v-model="health.tempHp"></el-input>
+                    </el-form>
                 </el-card>
             </el-col>
             <el-col :span="12">
                 <el-card class="overview-card">
                     <h4>Heal or Damage</h4>
-                    <el-row>
-                        <el-input v-model.number="amount" />
-                    </el-row>
-                    <el-row>
-                        <el-button @click="heal">Heal</el-button>
-                        <el-button @click="damage">Damage</el-button>
-                    </el-row>
+                    <el-form>
+                        <el-form-item label="Amount">
+                            <el-input v-model.number="amount" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button @click="heal">
+                                Heal
+                            </el-button>
+                            <el-button @click="damage">
+                                Damage
+                            </el-button>
+                        </el-form-item>
+                    </el-form>
                 </el-card>
             </el-col>
         </el-row>
