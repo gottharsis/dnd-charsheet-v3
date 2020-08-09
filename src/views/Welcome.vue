@@ -62,7 +62,7 @@ import {
     loadCharacter,
     deleteCharacter,
 } from "@/persist-data/persistCharacter";
-import { chunk } from "@/util/chunk";
+import { chunk } from "lodash";
 import { store } from "@/store";
 
 export default Vue.extend({

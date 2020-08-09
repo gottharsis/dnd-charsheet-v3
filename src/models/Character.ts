@@ -8,11 +8,12 @@ import { Inventory } from "./Inventory";
 import { v4 as uuid } from "uuid";
 import { Feature } from "./Feature";
 import { Ability } from "./Ability";
-import { AbilityScore, AbilityScores } from "./AbilityScores";
+import { AbilityScore, AbilityScores, ScoreAbility } from "./AbilityScores";
 import { Proficiencies } from "./Proficiency";
 import { SourceClass } from "./sourceinfo/SourceClass";
 import { MagicSource } from "./magic/MagicSource";
 import { Skill } from "./sourceinfo/SourceSkill";
+import sourceSkills from "@/reference/skills.json";
 
 export class Character {
     id: string;
@@ -65,12 +66,26 @@ export class Character {
         this.speed = "30 ft.";
     }
 
-    skillModifier(skill: Skill): number {
-        console.log("In skillModifier, ability score is " + skill.stat);
-        const abilityMod = this.abilityScores[skill.stat].modifier;
+    private getAbility(skillName: string): ScoreAbility | undefined {
+        return (sourceSkills as Skill[]).find((i) => i.name === skillName)
+            ?.stat;
+    }
+
+    skillModifier(skill: Skill | string): number {
+        const stat =
+            typeof skill === "string" ? this.getAbility(skill) : skill.stat;
+        if (!stat) {
+            throw "Invalid Skill Name";
+        }
+        const abilityMod = this.abilityScores[stat].modifier;
+        const name = typeof skill === "string" ? skill : skill.name;
         const prof =
-            (this.proficiencies.skills.get(skill.name) ?? 0) *
+            (this.proficiencies.skills.get(name) ?? 0) *
             this.playerClass.proficiencyBonus;
         return abilityMod + prof;
+    }
+
+    passive(skill: Skill | string): number {
+        return 10 + this.skillModifier(skill);
     }
 }

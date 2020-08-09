@@ -27,6 +27,9 @@
                             <el-button @click="damage">
                                 Damage
                             </el-button>
+                            <el-button @click="healAll">
+                                Heal All
+                            </el-button>
                         </el-form-item>
                     </el-form>
                 </el-card>
@@ -72,6 +75,9 @@ export default Vue.extend({
         damage() {
             this.health.damage(Math.floor(this.amount));
             this.amount = 0;
+        },
+        healAll() {
+            this.health.heal();
         },
     },
 });

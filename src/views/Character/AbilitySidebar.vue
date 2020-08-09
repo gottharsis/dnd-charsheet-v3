@@ -21,6 +21,8 @@ import {
     ScoreAbility,
 } from "@/models/AbilityScores";
 import AbilityDisplay from "./AbilitySidebar/AbilityDisplay.vue";
+
+import { throttle, debounce } from "lodash";
 export default Vue.extend({
     name: "AbilitySidebar",
     computed: {
@@ -32,7 +34,7 @@ export default Vue.extend({
         },
         style(): Record<string, any> {
             return {
-                "margin-top": `${this.offset}px`,
+                top: `${this.offset}px`,
             };
         },
     },
@@ -46,7 +48,7 @@ export default Vue.extend({
         AbilityDisplay,
     },
     mounted() {
-        document.addEventListener("scroll", this.updateOffset);
+        document.addEventListener("scroll", throttle(this.updateOffset, 200));
     },
     methods: {
         updateOffset() {
@@ -61,6 +63,7 @@ export default Vue.extend({
     display: flex;
     flex-direction: column;
     height: calc(100vh - 76px);
-    transition: margin-top 0.2s linear;
+    transition: top 0.2s linear;
+    position: relative;
 }
 </style>

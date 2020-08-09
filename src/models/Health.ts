@@ -48,7 +48,11 @@ export class Health {
         return this.currentHp === 0;
     }
 
-    heal(amt: number) {
-        this.currentHp = Math.min(this.currentHp + amt, this.maxHp);
+    heal(amt?: number) {
+        if (amt === undefined) {
+            this.currentHp = this.maxHp;
+        } else {
+            this.currentHp = Math.min(this.currentHp + amt, this.maxHp);
+        }
     }
 }

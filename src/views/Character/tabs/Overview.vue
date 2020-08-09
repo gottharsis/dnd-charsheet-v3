@@ -9,7 +9,7 @@
                 <!-- First Row -->
                 <el-row :gutter="20">
                     <h2>Basic Stats</h2>
-                    <el-col :span="8">
+                    <el-col :span="6">
                         <el-card class="overview-card">
                             <div slot="header">
                                 AC
@@ -19,7 +19,7 @@
                         </el-card>
                     </el-col>
 
-                    <el-col :span="8">
+                    <el-col :span="6">
                         <el-card class="overview-card">
                             <div slot="header">
                                 SPEED
@@ -29,7 +29,7 @@
                         </el-card>
                     </el-col>
 
-                    <el-col :span="8">
+                    <el-col :span="6">
                         <el-card class="overview-card">
                             <div slot="header">
                                 SIZE
@@ -38,11 +38,22 @@
                             <div class="major-number">{{ size }}</div>
                         </el-card>
                     </el-col>
+
+                    <el-col :span="6">
+                        <el-card class="overview-card">
+                            <div slot="header">PROFICIENCY BONUS</div>
+                            <div class="major-number">
+                                +{{ proficiencyBonus }}
+                            </div>
+                        </el-card>
+                    </el-col>
                 </el-row>
                 <el-divider />
                 <!-- Second Row -->
                 <health-indicator />
                 <el-divider />
+                <!-- Third Row -->
+                <other-proficiencies />
             </el-col>
         </el-row>
     </div>
@@ -52,6 +63,7 @@
 import Vue from "vue";
 import Skills from "../sections/Skills.vue";
 import HealthIndicator from "../sections/HealthIndicator.vue";
+import OtherProficiencies from "../sections/OtherProficiencies.vue";
 import { Character } from "@/models/Character";
 import { store } from "@/store";
 export default Vue.extend({
@@ -59,6 +71,7 @@ export default Vue.extend({
     components: {
         Skills,
         HealthIndicator,
+        OtherProficiencies,
     },
     computed: {
         character(): Character {
@@ -72,6 +85,9 @@ export default Vue.extend({
         },
         size(): string {
             return this.character.size;
+        },
+        proficiencyBonus(): number {
+            return this.character.playerClass.proficiencyBonus;
         },
     },
 });
