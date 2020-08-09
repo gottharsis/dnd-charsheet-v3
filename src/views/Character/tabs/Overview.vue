@@ -5,8 +5,10 @@
             <el-col :span="8">
                 <el-card class="overview-card"><skills /></el-card>
             </el-col>
-            <el-col :span="16">
+            <el-col :span="16" :gutter="30">
+                <!-- First Row -->
                 <el-row :gutter="20">
+                    <h2>Basic Stats</h2>
                     <el-col :span="6">
                         <el-card class="overview-card">
                             <div slot="header">
@@ -37,6 +39,10 @@
                         </el-card>
                     </el-col>
                 </el-row>
+                <el-divider />
+                <!-- Second Row -->
+                <health-indicator />
+                <el-divider />
             </el-col>
         </el-row>
     </div>
@@ -45,12 +51,14 @@
 <script lang="ts">
 import Vue from "vue";
 import Skills from "../sections/Skills.vue";
+import HealthIndicator from "../sections/HealthIndicator.vue";
 import { Character } from "@/models/Character";
 import { store } from "@/store";
 export default Vue.extend({
     name: "OverviewTab",
     components: {
         Skills,
+        HealthIndicator,
     },
     computed: {
         character(): Character {
