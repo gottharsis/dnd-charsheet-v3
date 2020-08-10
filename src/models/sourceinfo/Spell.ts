@@ -1,19 +1,14 @@
 export interface Spell {
-    at_higher_level: string;
     casting_time: string;
     classes: string[];
     components: string;
-    concentration: string;
+    concentration: boolean;
     description: string;
     duration: string;
-    ee: string;
-    id: string;
-    level: string;
+    level: number;
     name: string;
-    page: string;
     range: string;
-    ritual: string;
-    scag: string;
+    ritual: boolean;
     school: string;
     slug: string;
     source: string;
