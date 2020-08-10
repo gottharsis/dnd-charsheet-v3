@@ -88,4 +88,49 @@ export class Character {
     passive(skill: Skill | string): number {
         return 10 + this.skillModifier(skill);
     }
+
+    addClass(cl: SourceClass, level = 1, subclass = "") {
+        if (this.playerClass.classes.some((i) => i.name === cl.name)) {
+            throw "Cannot add same class";
+        }
+        const pcl = new PClass();
+        pcl.name = cl.name;
+        pcl.level = level;
+        pcl.subclass = subclass;
+        pcl.hitDie = cl.hitDice;
+        this.playerClass.classes.push(pcl);
+        if (cl.spellcasting) {
+            const magicSource = new MagicSource();
+            magicSource.name = cl.name;
+            magicSource.level = level;
+            magicSource.spellSlotProgression = cl.spellcasting.progression;
+
+            magicSource.hitBonus =
+                this.playerClass.proficiencyBonus +
+                this.abilityScores[cl.spellcasting.ability].modifier;
+            magicSource.dc = 8 + magicSource.hitBonus;
+
+            this.magic.addMagicSource(magicSource);
+        }
+        this.playerClass.recalculateHitDice();
+    }
+
+    removeClass(name: string) {
+        this.playerClass.classes = this.playerClass.classes.filter(
+            (i) => i.name !== name
+        );
+        this.playerClass.recalculateHitDice();
+        this.magic.removeMagicSource(name);
+    }
+
+    recomputeClassMagic() {
+        this.magic.magicSources.forEach((source) => {
+            const cls = this.playerClass.classes.find(
+                (i) => i.name === source.name
+            );
+            if (!cls) return;
+            source.level = cls.level;
+        });
+        this.magic.computeMulticlassSlots();
+    }
 }

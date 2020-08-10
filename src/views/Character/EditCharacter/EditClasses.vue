@@ -12,7 +12,11 @@
                 <el-row>
                     <el-col :span="12">
                         <el-form-item label="Level">
-                            <el-input type="number" v-model.number="cl.level" />
+                            <el-input
+                                type="number"
+                                v-model.number="cl.level"
+                                @input="recalculate"
+                            />
                         </el-form-item>
                     </el-col>
                     <el-col :span="12">
@@ -97,10 +101,14 @@ import { store } from "@/store";
 import { PlayerClass, PClass } from "@/models/PlayerClass";
 import { SourceClass } from "@/models/sourceinfo/SourceClass";
 import sCls from "@/reference/classes.json";
+import { Character } from "@/models/Character";
 const sourceClasses = sCls as SourceClass[];
 export default Vue.extend({
     name: "EditClasses",
     computed: {
+        character(): Character {
+            return store.character;
+        },
         playerClass(): PlayerClass {
             return store.character.playerClass;
         },
@@ -124,10 +132,11 @@ export default Vue.extend({
     methods: {
         recalculate() {
             this.playerClass.recalculateHitDice();
+            this.character.magic.computeMulticlassSlots();
         },
         addClass() {
             if (this.chosenClass) {
-                this.playerClass.addClass(
+                this.character.addClass(
                     this.chosenClass,
                     this.chosenClassLevel,
                     this.chosenClassSubclass
@@ -139,7 +148,7 @@ export default Vue.extend({
         },
         deleteClass(className: string) {
             if (this.playerClass.classes.length > 1) {
-                this.playerClass.removeClass(className);
+                this.character.removeClass(className);
             }
         },
     },
@@ -149,6 +158,9 @@ export default Vue.extend({
             chosenClassLevel: 1,
             chosenClassSubclass: "",
         };
+    },
+    beforeDestroy() {
+        this.character.recomputeClassMagic();
     },
 });
 </script>

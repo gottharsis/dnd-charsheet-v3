@@ -24,6 +24,16 @@ export class Magic {
         this.multiclassSlots = createSlots(level);
     }
 
+    addMagicSource(source: MagicSource) {
+        this.magicSources.push(source);
+        this.computeMulticlassSlots();
+    }
+
+    removeMagicSource(name: string) {
+        this.magicSources = this.magicSources.filter((i) => i.name !== name);
+        this.computeMulticlassSlots();
+    }
+
     // will attempt to cast from pact slot first if it is of the same level as pact magic, and then will use
     // multiclass slots.
     cast(level: number) {

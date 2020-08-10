@@ -65,14 +65,21 @@ export default Vue.extend({
                     arr.push(key + (value === 2) ? " (Expertise)" : "");
                 }
             });
-            return arr;
+            return (this.changeTracker && arr) || arr;
         },
         armor(): string {
-            return [...this.character.proficiencies.armor].join(", ");
+            const ar = [...this.character.proficiencies.armor].join(", ");
+            return (this.changeTracker && ar) || ar;
         },
         weapons(): string {
-            return [...this.character.proficiencies.weapons].join(", ");
+            const w = [...this.character.proficiencies.weapons].join(", ");
+            return (this.changeTracker && w) || w;
         },
+    },
+    data() {
+        return {
+            changeTracker: 1,
+        };
     },
 });
 </script>

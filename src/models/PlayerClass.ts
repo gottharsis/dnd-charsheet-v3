@@ -88,29 +88,4 @@ export class PlayerClass {
             )
         );
     }
-    addClass(cl: SourceClass, level = 1, subclass = "") {
-        if (this.classes.some((i) => i.name === cl.name)) {
-            throw "Cannot add same class";
-        }
-        const pcl = new PClass();
-        pcl.name = cl.name;
-        pcl.level = level;
-        pcl.subclass = subclass;
-        pcl.hitDie = cl.hitDice;
-        this.classes.push(pcl);
-        if (cl.spellcasting) {
-            const magicSource = new MagicSource();
-            magicSource.name = cl.name;
-            magicSource.level = level;
-            magicSource.spellSlotProgression = cl.spellcasting.progression;
-
-            // TODO: finish
-        }
-        this.recalculateHitDice();
-    }
-
-    removeClass(name: string) {
-        this.classes = this.classes.filter((i) => i.name !== name);
-        this.recalculateHitDice();
-    }
 }
