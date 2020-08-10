@@ -56,7 +56,7 @@ export default Vue.extend({
         },
 
         languages(): string[] {
-            return this.character.proficiencies.languages;
+            return [...this.character.proficiencies.languages];
         },
         tools(): string[] {
             const arr: string[] = [];
