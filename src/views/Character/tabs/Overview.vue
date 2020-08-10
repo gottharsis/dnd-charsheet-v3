@@ -1,6 +1,5 @@
 <template>
     <div id="overview">
-        <h1>Overview</h1>
         <el-row :gutter="20">
             <el-col :span="8">
                 <el-card class="overview-card"><skills /></el-card>
