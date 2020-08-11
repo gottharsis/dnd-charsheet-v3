@@ -51,11 +51,11 @@ export class CharacterCreator {
         char.abilityScores = this.abilityScores;
 
         // class
-        const pclass = new PClass();
-        pclass.name = this.class.name;
-        pclass.level = 1;
-        pclass.subclass = "";
-        char.playerClass.classes.push(pclass);
+        // const pclass = new PClass();
+        // pclass.name = this.class.name;
+        // pclass.level = 1;
+        // pclass.subclass = "";
+        // char.playerClass.classes.push(pclass);
 
         // health
         const hd = this.class.hitDice;
@@ -63,19 +63,23 @@ export class CharacterCreator {
         char.health.maxHp = hd + this.abilityScores.con.modifier;
         char.health.currentHp = char.health.maxHp;
 
-        // magic
-        if (this.class.spellcasting) {
-            const magicSource = new MagicSource();
-            magicSource.name = this.class.name;
-            magicSource.spellSlotProgression = this.class.spellcasting.progression;
-            const castingAbility = this.class.spellcasting.ability;
-            magicSource.hitBonus =
-                char.playerClass.proficiencyBonus +
-                this.abilityScores[castingAbility].modifier;
-            magicSource.dc = 8 + magicSource.hitBonus;
+        // classes and magic
+        char.addClass(this.class);
 
-            char.magic.magicSources.push(magicSource);
-        }
+        // magic
+        // if (this.class.spellcasting) {
+        //     const magicSource = new MagicSource();
+        //     magicSource.name = this.class.name;
+        //     magicSource.spellSlotProgression = this.class.spellcasting.progression;
+        //     const castingAbility = this.class.spellcasting.ability;
+        //     magicSource.castingStat = castingAbility;
+        //     magicSource.hitBonus =
+        //         char.playerClass.proficiencyBonus +
+        //         this.abilityScores[castingAbility].modifier;
+        //     magicSource.dc = 8 + magicSource.hitBonus;
+
+        //     char.magic.magicSources.push(magicSource);
+        // }
 
         // features and abilities
         char.features = this.customFeatures;

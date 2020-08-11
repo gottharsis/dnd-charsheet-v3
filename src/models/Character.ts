@@ -104,6 +104,7 @@ export class Character {
             magicSource.name = cl.name;
             magicSource.level = level;
             magicSource.spellSlotProgression = cl.spellcasting.progression;
+            magicSource.castingStat = cl.spellcasting.ability;
 
             magicSource.hitBonus =
                 this.playerClass.proficiencyBonus +
@@ -126,7 +127,7 @@ export class Character {
     recomputeClassMagic() {
         this.magic.magicSources.forEach((source) => {
             const cls = this.playerClass.classes.find(
-                (i) => i.name === source.name
+                (i) => i.name === source.name || i.subclass === source.name
             );
             if (!cls) return;
             source.level = cls.level;

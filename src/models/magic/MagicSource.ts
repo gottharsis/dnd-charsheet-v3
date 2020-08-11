@@ -1,5 +1,21 @@
 import { Type } from "class-transformer";
 import { ScoreAbility } from "../AbilityScores";
+import { SpellBySource, SingleUseSpellSource } from "../Magic";
+
+export class SingleUseSpell {
+    total = 0;
+    remaining = 0;
+    name = "";
+
+    use() {
+        if (this.remaining === 0) throw "Cannot use!";
+        this.remaining--;
+    }
+
+    reset(amt = this.total) {
+        this.remaining = Math.min(this.remaining + amt, this.total);
+    }
+}
 
 export class MagicSource {
     name = "";
@@ -15,16 +31,19 @@ export class MagicSource {
     @Type(() => String)
     alwaysPrepared: Set<string>;
 
-    @Type(() => Number)
-    singleUseSpells: Map<string, number>;
+    @Type(() => SingleUseSpell)
+    singleUseSpells: Record<string, SingleUseSpell>;
+
+    castingStat: ScoreAbility;
 
     constructor() {
         this.knownSpells = new Set();
         this.preparedSpells = new Set();
         this.alwaysPrepared = new Set();
-        this.singleUseSpells = new Map();
+        this.singleUseSpells = {};
         this.dc = 8;
         this.hitBonus = 0;
+        this.castingStat = "int";
     }
 
     learnSpell(spell: string) {
@@ -45,5 +64,37 @@ export class MagicSource {
 
     get adjustedLevel(): number {
         return this.spellSlotProgression * this.level;
+    }
+
+    preparedSpellsBySource(): SpellBySource[] {
+        const prepared = new Set([
+            ...this.preparedSpells,
+            ...this.alwaysPrepared,
+        ]);
+        return [...prepared].map((spell) => ({
+            source: this.name,
+            spell,
+            dc: this.dc,
+            hitBonus: this.hitBonus,
+        }));
+    }
+
+    knownSpellsBySource(): SpellBySource[] {
+        return [...this.knownSpells].map((spell) => ({
+            source: this.name,
+            spell,
+            dc: this.dc,
+            hitBonus: this.hitBonus,
+        }));
+    }
+
+    singleUseSpellsBySource(): SingleUseSpellSource[] {
+        return Object.entries(this.singleUseSpells).map(([spell, uses]) => ({
+            spell,
+            uses,
+            source: this.name,
+            dc: this.dc,
+            hitBonus: this.hitBonus,
+        }));
     }
 }
