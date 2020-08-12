@@ -1,23 +1,25 @@
 import { Slot, createSlots } from "./magic/SpellSlots";
 import { Type } from "class-transformer";
 import { MagicSource, SingleUseSpell } from "./magic/MagicSource";
-import spellsRaw from "@/reference/spells.json";
 import { Spell } from "./sourceinfo/Spell";
-const allSpells = spellsRaw as Record<string, Spell>;
+
+import { groupBy } from "lodash";
 
 export interface SpellBySource {
-    spell: string;
+    spell: Spell;
     source: string;
     dc: number;
     hitBonus: number;
+    key: string;
 }
 
 export interface SingleUseSpellSource {
-    spell: string;
+    spell: Spell;
     uses: SingleUseSpell;
     source: string;
     dc: number;
     hitBonus: number;
+    key: string;
 }
 
 export class Magic {
@@ -96,15 +98,16 @@ export class Magic {
     preparedSpellsByLevel() {
         const spells = this.preparedSpellsBySource();
 
-        const levels: SpellBySource[][] = [];
-        for (let i = 0; i <= 9; i++) levels.push([]);
+        // const levels: SpellBySource[][] = [];
+        // for (let i = 0; i <= 9; i++) levels.push([]);
 
-        spells.forEach((spell) => {
-            const level = allSpells[spell.spell].level;
-            levels[level].push(spell);
-        });
+        // spells.forEach((spell) => {
+        //     const level = allSpells[spell.spell].level;
+        //     levels[level].push(spell);
+        // });
 
-        return levels;
+        // return levels;
+        return groupBy(spells, (sp) => sp.spell.level);
     }
 
     singleUseSpells(): SingleUseSpellSource[] {

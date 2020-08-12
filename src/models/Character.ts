@@ -131,6 +131,10 @@ export class Character {
             );
             if (!cls) return;
             source.level = cls.level;
+            source.hitBonus =
+                this.playerClass.proficiencyBonus +
+                this.abilityScores[source.castingStat].modifier;
+            source.dc = 8 + source.hitBonus;
         });
         this.magic.computeMulticlassSlots();
     }

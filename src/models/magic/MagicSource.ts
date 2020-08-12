@@ -1,6 +1,9 @@
 import { Type } from "class-transformer";
 import { ScoreAbility } from "../AbilityScores";
 import { SpellBySource, SingleUseSpellSource } from "../Magic";
+import spellsRaw from "@/reference/spells.json";
+import { Spell } from "../sourceinfo/Spell";
+const allSpells = spellsRaw as Record<string, Spell>;
 
 export class SingleUseSpell {
     total = 0;
@@ -73,28 +76,31 @@ export class MagicSource {
         ]);
         return [...prepared].map((spell) => ({
             source: this.name,
-            spell,
+            spell: allSpells[spell],
             dc: this.dc,
             hitBonus: this.hitBonus,
+            key: allSpells[spell].slug + this.name,
         }));
     }
 
     knownSpellsBySource(): SpellBySource[] {
         return [...this.knownSpells].map((spell) => ({
             source: this.name,
-            spell,
+            spell: allSpells[spell],
             dc: this.dc,
             hitBonus: this.hitBonus,
+            key: allSpells[spell].slug + this.name,
         }));
     }
 
     singleUseSpellsBySource(): SingleUseSpellSource[] {
         return Object.entries(this.singleUseSpells).map(([spell, uses]) => ({
-            spell,
+            spell: allSpells[spell],
             uses,
             source: this.name,
             dc: this.dc,
             hitBonus: this.hitBonus,
+            key: allSpells[spell].slug + this.name,
         }));
     }
 }

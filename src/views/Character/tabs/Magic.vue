@@ -2,6 +2,7 @@
     <div id="magic-tab">
         <h1>Magic!!!</h1>
         <spell-slot />
+        <spells-by-level />
     </div>
 </template>
 
@@ -13,6 +14,7 @@ import { Magic } from "@/models/Magic";
 import { store } from "@/store";
 
 import SpellSlot from "../sections/SpellSlot.vue";
+import SpellsByLevel from "./Magic/SpellsByLevel.vue";
 
 const spells = spellsRaw as Record<string, Spell>;
 
@@ -25,6 +27,7 @@ export default Vue.extend({
     },
     components: {
         SpellSlot,
+        SpellsByLevel,
     },
 });
 </script>
