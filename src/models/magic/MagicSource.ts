@@ -18,6 +18,12 @@ export class SingleUseSpell {
     reset(amt = this.total) {
         this.remaining = Math.min(this.remaining + amt, this.total);
     }
+
+    constructor(spell: string, uses: number) {
+        this.name = spell;
+        this.total = uses;
+        this.remaining = uses;
+    }
 }
 
 export class MagicSource {
@@ -37,7 +43,7 @@ export class MagicSource {
     @Type(() => SingleUseSpell)
     singleUseSpells: Record<string, SingleUseSpell>;
 
-    castingStat: ScoreAbility;
+    castingStat?: ScoreAbility;
 
     constructor() {
         this.knownSpells = new Set();
@@ -102,5 +108,11 @@ export class MagicSource {
             hitBonus: this.hitBonus,
             key: allSpells[spell].slug + this.name,
         }));
+    }
+
+    addSingleUseSpell(...spells: { spell: string; uses: number }[]) {
+        spells.forEach(({ spell, uses }) => {
+            this.singleUseSpells[spell] = new SingleUseSpell(spell, uses);
+        });
     }
 }

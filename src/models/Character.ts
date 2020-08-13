@@ -124,18 +124,28 @@ export class Character {
         this.magic.removeMagicSource(name);
     }
 
-    recomputeClassMagic() {
-        this.magic.magicSources.forEach((source) => {
+    recompute() {
+        const computeDcAndBonus = (source: MagicSource) => {
+            if (!source.castingStat) return;
+            source.hitBonus =
+                this.playerClass.proficiencyBonus +
+                this.abilityScores[source.castingStat!!].modifier;
+            source.dc = 8 + source.hitBonus;
+        };
+
+        const setMSourceClsLvl = (source: MagicSource) => {
             const cls = this.playerClass.classes.find(
                 (i) => i.name === source.name || i.subclass === source.name
             );
             if (!cls) return;
             source.level = cls.level;
-            source.hitBonus =
-                this.playerClass.proficiencyBonus +
-                this.abilityScores[source.castingStat].modifier;
-            source.dc = 8 + source.hitBonus;
+        };
+
+        this.magic.magicSources.forEach((source) => {
+            computeDcAndBonus(source);
+            setMSourceClsLvl(source);
         });
         this.magic.computeMulticlassSlots();
+        this.playerClass.recalculateHitDice();
     }
 }

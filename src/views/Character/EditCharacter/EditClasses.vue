@@ -131,8 +131,7 @@ export default Vue.extend({
     },
     methods: {
         recalculate() {
-            this.playerClass.recalculateHitDice();
-            this.character.magic.computeMulticlassSlots();
+            this.character.recompute();
         },
         addClass() {
             if (this.chosenClass) {
@@ -160,7 +159,7 @@ export default Vue.extend({
         };
     },
     beforeDestroy() {
-        this.character.recomputeClassMagic();
+        this.character.recompute();
     },
 });
 </script>
