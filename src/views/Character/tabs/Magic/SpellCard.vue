@@ -21,7 +21,7 @@
             <div slot="content">
                 <div><b>Upcast</b></div>
                 <el-button
-                    v-for="{ text, upLevel } in upcastSlots"
+                    v-for="{ text, level: upLevel } in upcastSlots"
                     :key="upLevel"
                     @click="cast(upLevel)"
                 >
