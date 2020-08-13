@@ -22,6 +22,9 @@ const spells = [
     "shadow-of-moil",
     "sacred-flame",
     "thaumaturgy",
+    "revivify",
+    "disintegrate",
+    "wish",
 ];
 
 spells.forEach((sp) => {

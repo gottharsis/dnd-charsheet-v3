@@ -2,10 +2,10 @@
     <div id="spells-by-level">
         <h2>Spells by Level</h2>
         <el-row v-for="[level, spells] in spellsByLevel" :key="level">
-            <h4>{{ level }}</h4>
+            <h3>{{ level }}</h3>
             <el-row :gutter="20">
                 <el-col
-                    :span="4"
+                    :span="6"
                     v-for="spellSrc in spells"
                     :key="spellSrc.key"
                 >
@@ -42,6 +42,11 @@ export default Vue.extend({
     },
     components: {
         SpellCard,
+    },
+    data() {
+        return {
+            descriptionHtml: "",
+        };
     },
 });
 </script>
