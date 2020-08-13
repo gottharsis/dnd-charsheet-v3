@@ -25,6 +25,9 @@ const spells = [
     "revivify",
     "disintegrate",
     "wish",
+    "mind-spike",
+    "counterspell",
+    "eldritch-blast",
 ];
 
 spells.forEach((sp) => {

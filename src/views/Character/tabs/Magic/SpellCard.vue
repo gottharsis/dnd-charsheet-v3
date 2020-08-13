@@ -17,7 +17,28 @@
         <div class="spell-card__bonus">
             {{ source }}: {{ hitBonus }} to hit, DC {{ dc }}
         </div>
-        <el-button type="primary">Cast</el-button>
+        <el-tooltip placement="top" effect="light">
+            <div slot="content">
+                <div><b>Upcast</b></div>
+                <el-button
+                    v-for="{ text, upLevel } in upcastSlots"
+                    :key="upLevel"
+                    @click="cast(upLevel)"
+                >
+                    {{ text }}
+                </el-button>
+            </div>
+            <div style="width: 50%; margin: auto;">
+                <el-button
+                    type="primary"
+                    v-if="spell.spell.level > 0"
+                    :disabled="!isPossible"
+                    @click="cast(level)"
+                >
+                    Cast
+                </el-button>
+            </div>
+        </el-tooltip>
 
         <el-dialog
             title="Spell Description"
@@ -76,7 +97,7 @@
 
 <script lang="ts">
 import Vue, { PropType } from "vue";
-import { SpellBySource } from "@/models/Magic";
+import { SpellBySource, Magic } from "@/models/Magic";
 import marked from "marked";
 
 // @ts-ignore
@@ -95,6 +116,13 @@ import necromancyImage from "@/assets/schools/necromancy.svg";
 import transmutationImage from "@/assets/schools/transmutation.svg";
 // @ts-ignore
 import illusionImage from "@/assets/schools/illusion.svg";
+import { store } from "@/store";
+import { Character } from "@/models/Character";
+
+interface UpcastSlot {
+    text: string;
+    level: number | "pact";
+}
 
 export default Vue.extend({
     name: "SpellCard",
@@ -102,6 +130,12 @@ export default Vue.extend({
         spell: Object as PropType<SpellBySource>,
     },
     computed: {
+        character(): Character {
+            return store.character;
+        },
+        magic(): Magic {
+            return this.character.magic;
+        },
         name(): string {
             return this.spell.spell.name;
         },
@@ -163,6 +197,37 @@ export default Vue.extend({
                 ? "Cantrip"
                 : `Level ${this.spell.spell.level}`;
         },
+        isPossible(): boolean {
+            const level = this.spell.spell.level;
+            return (
+                this.magic.multiclassSlots[level].remaining > 0 ||
+                (this.magic.pactSlot?.level === level &&
+                    this.magic.pactSlot?.remaining > 0)
+            );
+        },
+        level(): number {
+            return this.spell.spell.level;
+        },
+        upcastSlots(): UpcastSlot[] {
+            const levelString = (level: number, remaining: number) =>
+                `Level ${level} (${remaining})`;
+
+            const upcast: UpcastSlot[] = this.magic.multiclassSlots
+                .filter((slot) => slot.level > this.level && slot.remaining > 0)
+                .map((sl) => ({
+                    text: levelString(sl.level, sl.remaining),
+                    level: sl.level,
+                }));
+            const pactSlot = this.magic.pactSlot;
+
+            if (pactSlot && pactSlot.level >= this.level) {
+                upcast.push({
+                    text: `Pact (Level ${pactSlot.level}, ${pactSlot.remaining})`,
+                    level: "pact",
+                });
+            }
+            return upcast;
+        },
     },
     data() {
         return {
@@ -176,6 +241,13 @@ export default Vue.extend({
                 this.fullText = marked(this.spell.spell.description);
             }
             this.isDescriptionVisible = true;
+        },
+        cast(level: number | "pact") {
+            if (level === "pact") {
+                store.character.magic.pactSlot?.cast();
+            } else {
+                store.character.magic.cast(level);
+            }
         },
     },
 });

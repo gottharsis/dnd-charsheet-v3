@@ -1,6 +1,5 @@
 <template>
     <div id="magic-tab">
-        <h1>Magic!!!</h1>
         <spell-slot />
         <spells-by-level />
     </div>
