@@ -9,7 +9,7 @@
                     v-for="spellSrc in spells"
                     :key="spellSrc.key"
                 >
-                    <spell-card :spell="spellSrc" />
+                    <spell-card :spell="spellSrc" @cast="cast" />
                 </el-col>
             </el-row>
         </el-row>
@@ -42,6 +42,15 @@ export default Vue.extend({
     },
     components: {
         SpellCard,
+    },
+    methods: {
+        cast({ level }: { level: number | "pact" }) {
+            if (level === "pact") {
+                this.magic.pactSlot?.cast();
+            } else {
+                this.magic.cast(level);
+            }
+        },
     },
     data() {
         return {

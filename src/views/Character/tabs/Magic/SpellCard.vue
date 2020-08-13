@@ -17,17 +17,31 @@
         <div class="spell-card__bonus">
             {{ source }}: {{ hitBonus }} to hit, DC {{ dc }}
         </div>
-        <el-tooltip placement="top" effect="light">
-            <div slot="content">
-                <div><b>Upcast</b></div>
-                <el-button
-                    v-for="{ text, level: upLevel } in upcastSlots"
-                    :key="upLevel"
-                    @click="cast(upLevel)"
-                >
-                    {{ text }}
-                </el-button>
-            </div>
+        <template v-if="upcastable">
+            <el-tooltip placement="top" effect="light">
+                <div slot="content">
+                    <div><b>Upcast</b></div>
+                    <el-button
+                        v-for="{ text, level: upLevel } in upcastSlots"
+                        :key="upLevel"
+                        @click="cast(upLevel)"
+                    >
+                        {{ text }}
+                    </el-button>
+                </div>
+                <div style="width: 50%; margin: auto;">
+                    <el-button
+                        type="primary"
+                        v-if="spell.spell.level > 0"
+                        :disabled="!isPossible"
+                        @click="cast(level)"
+                    >
+                        Cast
+                    </el-button>
+                </div>
+            </el-tooltip>
+        </template>
+        <template v-else>
             <div style="width: 50%; margin: auto;">
                 <el-button
                     type="primary"
@@ -38,7 +52,7 @@
                     Cast
                 </el-button>
             </div>
-        </el-tooltip>
+        </template>
 
         <el-dialog
             title="Spell Description"
@@ -128,6 +142,10 @@ export default Vue.extend({
     name: "SpellCard",
     props: {
         spell: Object as PropType<SpellBySource>,
+        upcastable: {
+            type: Boolean,
+            default: true,
+        },
     },
     computed: {
         character(): Character {
@@ -243,11 +261,7 @@ export default Vue.extend({
             this.isDescriptionVisible = true;
         },
         cast(level: number | "pact") {
-            if (level === "pact") {
-                store.character.magic.pactSlot?.cast();
-            } else {
-                store.character.magic.cast(level);
-            }
+            this.$emit("cast", { level });
         },
     },
 });
