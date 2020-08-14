@@ -152,4 +152,8 @@ export class Character {
     deleteAbility(id: string) {
         this.abilities = this.abilities.filter((ab) => ab.id !== id);
     }
+
+    deleteFeature(id: string) {
+        this.features = this.features.filter((f) => f.id !== id);
+    }
 }
