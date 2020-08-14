@@ -7,19 +7,19 @@
                     <el-row :gutter="20">
                         <el-col :span="6">
                             <h4>PP</h4>
-                            <el-input v-model="wealth.pp" />
+                            <el-input v-model.number="wealth.pp" />
                         </el-col>
                         <el-col :span="6">
                             <h4>GP</h4>
-                            <el-input v-model="wealth.gp" />
+                            <el-input v-model.number="wealth.gp" />
                         </el-col>
                         <el-col :span="6">
                             <h4>SP</h4>
-                            <el-input v-model="wealth.sp" />
+                            <el-input v-model.number="wealth.sp" />
                         </el-col>
                         <el-col :span="6">
                             <h4>CP</h4>
-                            <el-input v-model="wealth.cp" />
+                            <el-input v-model.number="wealth.cp" />
                         </el-col>
                     </el-row>
                 </el-card>
