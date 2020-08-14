@@ -101,7 +101,7 @@ export default Vue.extend({
                 console.error("Failed to Create");
                 console.error(e);
             }
-            // TODO: navigate to character view
+            this.$router.push("/");
         },
     },
 });

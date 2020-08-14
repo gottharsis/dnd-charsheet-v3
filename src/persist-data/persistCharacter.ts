@@ -41,10 +41,10 @@ export const saveCharacter = async (character: Character) => {
 
     try {
         const indexData = await readIndexFile();
+        fs.writeFileSync(filepath, json);
         indexData[id] = name;
         await writeIndexFile(indexData);
         // await fsp.writeFile(filepath, json);
-        fs.writeFileSync(filepath, json);
     } catch (error) {
         console.error("Unable to save file!!");
         console.error(error);
@@ -63,6 +63,7 @@ export const loadCharacter = async (
         const revived = plainToClass(Character, object);
         return revived;
     } catch (error) {
+        console.error(error);
         throw `Unable to open ${characterId}.json: file not found`;
     }
 };

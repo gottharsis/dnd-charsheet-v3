@@ -100,11 +100,12 @@ export class Character {
         pcl.hitDie = cl.hitDice;
         this.playerClass.classes.push(pcl);
         if (cl.spellcasting) {
-            const magicSource = new MagicSource();
-            magicSource.name = cl.name;
+            const magicSource = new MagicSource(
+                cl.name,
+                cl.spellcasting.ability
+            );
             magicSource.level = level;
             magicSource.spellSlotProgression = cl.spellcasting.progression;
-            magicSource.castingStat = cl.spellcasting.ability;
 
             magicSource.hitBonus =
                 this.playerClass.proficiencyBonus +

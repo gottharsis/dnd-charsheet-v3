@@ -26,49 +26,102 @@ export class SingleUseSpell {
     }
 }
 
+interface KnownSpellConstructorArgs {
+    spell: string;
+    prepared?: boolean;
+    alwaysPrepared?: boolean;
+}
+class KnownSpell {
+    spell: string;
+    prepared?: boolean;
+    alwaysPrepared?: boolean;
+
+    constructor(args?: KnownSpellConstructorArgs) {
+        this.spell = args?.spell ?? "";
+        this.prepared = args?.prepared ?? false;
+        this.alwaysPrepared = args?.alwaysPrepared ?? false;
+    }
+}
+
 export class MagicSource {
     name = "";
     spellSlotProgression = 0;
     dc: number;
     hitBonus: number;
     level = 0;
-    @Type(() => String)
-    knownSpells: Set<string>;
+    @Type(() => KnownSpell)
+    knownSpells: Record<string, KnownSpell>;
     // includes both unpreparable spells and always prepared spells
-    @Type(() => String)
-    preparedSpells: Set<string>;
-    @Type(() => String)
-    alwaysPrepared: Set<string>;
 
     @Type(() => SingleUseSpell)
     singleUseSpells: Record<string, SingleUseSpell>;
 
     castingStat?: ScoreAbility;
+    toPrepare?: number;
 
-    constructor() {
-        this.knownSpells = new Set();
-        this.preparedSpells = new Set();
-        this.alwaysPrepared = new Set();
+    constructor(name = "", castingStat?: ScoreAbility) {
+        this.name = name;
+        this.knownSpells = {};
         this.singleUseSpells = {};
         this.dc = 8;
         this.hitBonus = 0;
-        this.castingStat = "int";
+        if (castingStat) {
+            this.castingStat = castingStat;
+        }
     }
 
-    learnSpell(spell: string) {
-        this.knownSpells.add(spell);
+    get preparedSpells(): string[] {
+        return Object.entries(this.knownSpells).reduce(
+            (arr: string[], [slug, { prepared, alwaysPrepared }]) => {
+                if (prepared || alwaysPrepared) {
+                    return arr.concat(slug);
+                }
+                return arr;
+            },
+            []
+        );
     }
 
-    unlearnSpell(spell: string) {
-        this.knownSpells.delete(spell);
+    get alwaysPrepared(): string[] {
+        return Object.entries(this.knownSpells).reduce(
+            (arr: string[], [slug, { alwaysPrepared }]) => {
+                if (alwaysPrepared) {
+                    return arr.concat(slug);
+                }
+                return arr;
+            },
+            []
+        );
     }
 
-    prepareSpell(spell: string) {
-        this.preparedSpells.add(spell);
+    learnSpell(...spells: string[]) {
+        spells.forEach((sp) => {
+            if (sp in this.knownSpells) return;
+            this.knownSpells[sp] = new KnownSpell({ spell: sp });
+        });
     }
 
-    unprepareSpell(spell: string) {
-        this.preparedSpells.delete(spell);
+    unlearnSpell(...spells: string[]) {
+        // this.knownSpells.delete(spell);
+        spells.forEach((spell) => {
+            delete this.knownSpells[spell];
+        });
+    }
+
+    prepareSpell(...spells: string[]) {
+        // this.preparedSpells.add(spell);
+        spells.forEach((spell) => {
+            if (spell in this.knownSpells)
+                this.knownSpells[spell].prepared = true;
+        });
+    }
+
+    unprepareSpell(...spells: string[]) {
+        spells.forEach((spell) => {
+            if (spell in this.knownSpells) {
+                this.knownSpells[spell].prepared = false;
+            }
+        });
     }
 
     get adjustedLevel(): number {
@@ -76,21 +129,24 @@ export class MagicSource {
     }
 
     preparedSpellsBySource(): SpellBySource[] {
-        const prepared = new Set([
-            ...this.preparedSpells,
-            ...this.alwaysPrepared,
-        ]);
-        return [...prepared].map((spell) => ({
-            source: this.name,
-            spell: allSpells[spell],
-            dc: this.dc,
-            hitBonus: this.hitBonus,
-            key: allSpells[spell].slug + this.name,
-        }));
+        return Object.entries(this.knownSpells)
+            .filter(
+                ([slug, { prepared, alwaysPrepared }]) =>
+                    prepared || alwaysPrepared
+            )
+            .map(([slug, spell]) => {
+                return {
+                    source: this.name,
+                    spell: allSpells[slug],
+                    dc: this.dc,
+                    hitBonus: this.hitBonus,
+                    key: slug + this.name,
+                };
+            });
     }
 
     knownSpellsBySource(): SpellBySource[] {
-        return [...this.knownSpells].map((spell) => ({
+        return Object.keys(this.knownSpells).map((spell) => ({
             source: this.name,
             spell: allSpells[spell],
             dc: this.dc,

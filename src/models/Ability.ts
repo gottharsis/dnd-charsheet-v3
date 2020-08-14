@@ -10,9 +10,9 @@ export class Ability {
     remainingUses: number;
 
     constructor({
-        name,
+        name = "",
         description = "",
-        uses,
+        uses = 0,
     }: {
         description?: string;
         name: string;

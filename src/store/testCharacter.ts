@@ -32,20 +32,15 @@ const spells = [
     "eldritch-blast",
 ];
 
-spells.forEach((sp) => {
-    magicSource.learnSpell(sp);
-    magicSource.prepareSpell(sp);
-});
+// spells.forEach((sp) => {
+//     magicSource.learnSpell(sp);
+//     magicSource.prepareSpell(sp);
+// });
+magicSource.learnSpell(...spells);
+magicSource.prepareSpell(...spells);
 
-const magicSource2 = new MagicSource();
-magicSource2.name = "Racial Casting";
-magicSource2.castingStat = "cha";
+const magicSource2 = new MagicSource("Racial Casting", "cha");
 magicSource2.spellSlotProgression = 0;
-
-magicSource2.addSingleUseSpell(
-    { spell: "darkness", uses: 1 },
-    { spell: "web", uses: 1 }
-);
 
 testCharacter.magic.addMagicSource(magicSource2);
 

@@ -6,9 +6,9 @@ export class Feature {
     source: string;
     id: string;
     constructor({
-        name,
+        name = "",
         description = "",
-        source,
+        source = "",
     }: {
         name: string;
         description?: string;
