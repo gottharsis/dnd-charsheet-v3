@@ -48,6 +48,7 @@ import EditCharacter from "./Character/EditCharacter.vue";
 import Overview from "./Character/tabs/Overview.vue";
 import Combat from "./Character/tabs/Combat.vue";
 import Magic from "./Character/tabs/Magic.vue";
+import Abilities from "./Character/tabs/Abilities.vue";
 
 interface Tab {
     name: string;
@@ -90,6 +91,10 @@ export default Vue.extend({
                 {
                     name: "Magic",
                     component: Magic,
+                },
+                {
+                    name: "Features and Abilities",
+                    component: Abilities,
                 },
             ],
             // tabOrder: ["overview", "combat"],

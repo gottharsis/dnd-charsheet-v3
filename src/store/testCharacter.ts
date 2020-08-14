@@ -2,6 +2,7 @@ import { Character } from "@/models/Character";
 import { SourceClass } from "@/models/sourceinfo/SourceClass";
 import SourceClasses from "@/reference/classes.json";
 import { MagicSource } from "@/models/magic/MagicSource";
+import { Ability } from "@/models/Ability";
 
 export const testCharacter = new Character();
 testCharacter.name = "Bob the BUilder";
@@ -47,5 +48,14 @@ magicSource2.addSingleUseSpell(
 );
 
 testCharacter.magic.addMagicSource(magicSource2);
+
+testCharacter.abilities.push(
+    new Ability({
+        name: "Cast Darkness",
+        uses: 1,
+        description:
+            "Cast Darkness once per day.\n\n***Source:*** Racial (Tiefling)",
+    })
+);
 
 testCharacter.recompute();

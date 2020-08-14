@@ -148,4 +148,8 @@ export class Character {
         this.magic.computeMulticlassSlots();
         this.playerClass.recalculateHitDice();
     }
+
+    deleteAbility(id: string) {
+        this.abilities = this.abilities.filter((ab) => ab.id !== id);
+    }
 }
