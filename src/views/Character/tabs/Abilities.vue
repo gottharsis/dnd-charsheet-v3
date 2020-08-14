@@ -1,6 +1,7 @@
 <template>
     <div id="abilities">
         <tracked-abilities />
+        <el-divider />
         <features />
     </div>
 </template>
