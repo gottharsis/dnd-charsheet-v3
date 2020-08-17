@@ -33,13 +33,29 @@ interface KnownSpellConstructorArgs {
 }
 class KnownSpell {
     spell: string;
-    prepared?: boolean;
-    alwaysPrepared?: boolean;
+    prepared: boolean;
+    alwaysPrepared: boolean;
 
     constructor(args?: KnownSpellConstructorArgs) {
         this.spell = args?.spell ?? "";
         this.prepared = args?.prepared ?? false;
         this.alwaysPrepared = args?.alwaysPrepared ?? false;
+    }
+
+    prepare() {
+        this.prepared = true;
+    }
+
+    unprepare() {
+        this.prepared = false;
+    }
+
+    alwaysPrepare() {
+        this.alwaysPrepared = true;
+    }
+
+    alwaysUnprepare() {
+        this.alwaysPrepared = false;
     }
 }
 
@@ -50,7 +66,7 @@ export class MagicSource {
     hitBonus: number;
     level = 0;
     @Type(() => KnownSpell)
-    knownSpells: Record<string, KnownSpell>;
+    knownSpells: Map<string, KnownSpell>;
     // includes both unpreparable spells and always prepared spells
 
     @Type(() => SingleUseSpell)
@@ -61,7 +77,7 @@ export class MagicSource {
 
     constructor(name = "", castingStat?: ScoreAbility) {
         this.name = name;
-        this.knownSpells = {};
+        this.knownSpells = new Map();
         this.singleUseSpells = {};
         this.dc = 8;
         this.hitBonus = 0;
@@ -71,7 +87,7 @@ export class MagicSource {
     }
 
     get preparedSpells(): string[] {
-        return Object.entries(this.knownSpells).reduce(
+        return [...this.knownSpells.entries()].reduce(
             (arr: string[], [slug, { prepared, alwaysPrepared }]) => {
                 if (prepared || alwaysPrepared) {
                     return arr.concat(slug);
@@ -96,31 +112,33 @@ export class MagicSource {
 
     learnSpell(...spells: string[]) {
         spells.forEach((sp) => {
-            if (sp in this.knownSpells) return;
-            this.knownSpells[sp] = new KnownSpell({ spell: sp });
+            if (this.knownSpells.has(sp)) return;
+            this.knownSpells.set(
+                sp,
+                new KnownSpell({
+                    spell: sp,
+                })
+            );
         });
     }
 
     unlearnSpell(...spells: string[]) {
         // this.knownSpells.delete(spell);
         spells.forEach((spell) => {
-            delete this.knownSpells[spell];
+            this.knownSpells.delete(spell);
         });
     }
 
     prepareSpell(...spells: string[]) {
         // this.preparedSpells.add(spell);
         spells.forEach((spell) => {
-            if (spell in this.knownSpells)
-                this.knownSpells[spell].prepared = true;
+            this.knownSpells.get(spell)?.prepare();
         });
     }
 
     unprepareSpell(...spells: string[]) {
         spells.forEach((spell) => {
-            if (spell in this.knownSpells) {
-                this.knownSpells[spell].prepared = false;
-            }
+            this.knownSpells.get(spell)?.unprepare();
         });
     }
 
@@ -129,7 +147,7 @@ export class MagicSource {
     }
 
     preparedSpellsBySource(): SpellBySource[] {
-        return Object.entries(this.knownSpells)
+        return [...this.knownSpells.entries()]
             .filter(
                 ([slug, { prepared, alwaysPrepared }]) =>
                     prepared || alwaysPrepared
@@ -146,7 +164,7 @@ export class MagicSource {
     }
 
     knownSpellsBySource(): SpellBySource[] {
-        return Object.keys(this.knownSpells).map((spell) => ({
+        return [...this.knownSpells.keys()].map((spell) => ({
             source: this.name,
             spell: allSpells[spell],
             dc: this.dc,
@@ -170,5 +188,16 @@ export class MagicSource {
         spells.forEach(({ spell, uses }) => {
             this.singleUseSpells[spell] = new SingleUseSpell(spell, uses);
         });
+    }
+
+    isSpellKnown(spell: string | Spell) {
+        const txt = typeof spell === "string" ? spell : spell.slug;
+        return this.knownSpells.has(txt);
+    }
+
+    isSpellPrepared(spell: string | Spell): boolean {
+        const txt = typeof spell === "string" ? spell : spell.slug;
+        const sp = this.knownSpells.get(txt);
+        return (sp?.prepared || sp?.alwaysPrepared) ?? false;
     }
 }
