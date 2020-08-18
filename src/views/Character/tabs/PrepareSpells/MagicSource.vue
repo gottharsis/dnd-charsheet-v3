@@ -88,7 +88,7 @@ export default Vue.extend({
             if (this.magicSource.toPrepare) {
                 return `${this.magicSource.name} (${this.magicSource.numPrepared} / ${this.magicSource.toPrepare})`;
             } else {
-                return `${this.magicSource.name} (${this.magicSource.numPrepared})`;
+                return `${this.magicSource.name} (${this.magicSource.numPrepared} prepared)`;
             }
         },
     },
