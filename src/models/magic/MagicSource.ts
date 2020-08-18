@@ -31,7 +31,7 @@ interface KnownSpellConstructorArgs {
     prepared?: boolean;
     alwaysPrepared?: boolean;
 }
-class KnownSpell {
+export class KnownSpell {
     spell: string;
     prepared: boolean;
     alwaysPrepared: boolean;
@@ -199,5 +199,12 @@ export class MagicSource {
         const txt = typeof spell === "string" ? spell : spell.slug;
         const sp = this.knownSpells.get(txt);
         return (sp?.prepared || sp?.alwaysPrepared) ?? false;
+    }
+
+    get numPrepared(): number {
+        return [...this.knownSpells.values()].reduce(
+            (acc, i) => (i.prepared && !i.alwaysPrepared ? acc + 1 : acc),
+            0
+        );
     }
 }

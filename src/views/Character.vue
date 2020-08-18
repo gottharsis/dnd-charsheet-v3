@@ -51,6 +51,7 @@ import Magic from "./Character/tabs/Magic.vue";
 import Abilities from "./Character/tabs/Abilities.vue";
 import Inventory from "./Character/tabs/Inventory.vue";
 import SpellList from "./Character/tabs/SpellList.vue";
+import PrepareSpells from "./Character/tabs/PrepareSpells.vue";
 
 interface Tab {
     name: string;
@@ -79,6 +80,7 @@ export default Vue.extend({
         Combat,
         Inventory,
         SpellList,
+        PrepareSpells,
     },
     data() {
         return {
@@ -107,6 +109,10 @@ export default Vue.extend({
                 {
                     name: "All Spells",
                     component: SpellList,
+                },
+                {
+                    name: "Prepare Spells",
+                    component: PrepareSpells,
                 },
             ],
             // tabOrder: ["overview", "combat"],
