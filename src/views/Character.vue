@@ -25,7 +25,7 @@
                     {{ character.race }} {{ character.playerClass }}
                 </el-row>
 
-                <el-tabs tab-position="top">
+                <!-- <el-tabs tab-position="top">
                     <el-tab-pane
                         v-for="tab in tabs"
                         :key="tab.name"
@@ -33,7 +33,24 @@
                     >
                         <component :is="tab.component" />
                     </el-tab-pane>
-                </el-tabs>
+                </el-tabs> -->
+
+                <el-menu
+                    mode="horizontal"
+                    :default-active="selectedTab"
+                    :active-text-color="blue"
+                >
+                    <el-menu-item
+                        v-for="{ name, path } in tabs"
+                        :key="name"
+                        :index="name"
+                        @click="navigateTo(path)"
+                    >
+                        {{ name }}
+                    </el-menu-item>
+                </el-menu>
+
+                <router-view />
             </el-main>
         </el-container>
     </el-container>
@@ -45,13 +62,13 @@ import { Character } from "@/models/Character";
 import AbilitySidebar from "./Character/AbilitySidebar.vue";
 import EditCharacter from "./Character/EditCharacter.vue";
 
-import Overview from "./Character/tabs/Overview.vue";
-import Combat from "./Character/tabs/Combat.vue";
-import Magic from "./Character/tabs/Magic.vue";
-import Abilities from "./Character/tabs/Abilities.vue";
-import Inventory from "./Character/tabs/Inventory.vue";
-import SpellList from "./Character/tabs/SpellList.vue";
-import PrepareSpells from "./Character/tabs/PrepareSpells.vue";
+// import Overview from "./Character/tabs/Overview.vue";
+// import Combat from "./Character/tabs/Combat.vue";
+// import Magic from "./Character/tabs/Magic.vue";
+// import Abilities from "./Character/tabs/Abilities.vue";
+// import Inventory from "./Character/tabs/Inventory.vue";
+// import SpellList from "./Character/tabs/SpellList.vue";
+// import PrepareSpells from "./Character/tabs/PrepareSpells.vue";
 
 interface Tab {
     name: string;
@@ -76,11 +93,11 @@ export default Vue.extend({
     components: {
         AbilitySidebar,
         EditCharacter,
-        Overview,
-        Combat,
-        Inventory,
-        SpellList,
-        PrepareSpells,
+        // Overview,
+        // Combat,
+        // Inventory,
+        // SpellList,
+        // PrepareSpells,
     },
     data() {
         return {
@@ -88,36 +105,48 @@ export default Vue.extend({
             tabs: [
                 {
                     name: "Overview",
-                    component: Overview,
+                    // component: Overview,
+                    path: "/character/overview",
                 },
                 {
                     name: "Combat",
-                    component: Combat,
+                    // component: Combat,
+                    path: "/character/combat",
                 },
                 {
                     name: "Magic",
-                    component: Magic,
+                    // component: Magic,
+                    path: "/character/magic",
                 },
                 {
                     name: "Features and Abilities",
-                    component: Abilities,
+                    // component: Abilities,
+                    path: "/character/abilities",
                 },
                 {
                     name: "Inventory",
-                    component: Inventory,
+                    // component: Inventory,
+                    path: "/character/inventory",
                 },
                 {
                     name: "All Spells",
-                    component: SpellList,
+                    // component: SpellList,
+                    path: "/character/spell-list",
                 },
                 {
                     name: "Prepare Spells",
-                    component: PrepareSpells,
+                    // component: PrepareSpells,
+                    path: "/character/prepare-spells",
                 },
             ],
             // tabOrder: ["overview", "combat"],
-            // selectedTab: "overview",
+            selectedTab: "",
         };
+    },
+    methods: {
+        navigateTo(path: string) {
+            this.$router.push(path);
+        },
     },
 });
 </script>
