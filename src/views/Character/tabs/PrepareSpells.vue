@@ -1,11 +1,13 @@
 <template>
     <div id="prepare-spells-tab">
         <h2>Prepare spells</h2>
-        <magic-source-display
-            v-for="src in magicSources"
-            :key="src.name"
-            :magicSource="src"
-        />
+        <el-collapse accordion>
+            <magic-source-display
+                v-for="src in magicSources"
+                :key="src.name"
+                :magicSource="src"
+            />
+        </el-collapse>
     </div>
 </template>
 

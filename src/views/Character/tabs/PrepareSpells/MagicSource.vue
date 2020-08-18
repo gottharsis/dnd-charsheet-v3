@@ -1,6 +1,8 @@
 <template>
-    <div class="magic-source">
-        <h2>{{ title }}</h2>
+    <el-collapse-item class="magic-source" :name="magicSource.name">
+        <template slot="title">
+            <h2>{{ title }}</h2>
+        </template>
         <el-row v-for="[level, spells] in knownSpells" :key="level">
             <h3>{{ level }}</h3>
             <el-row :gutter="20">
@@ -31,7 +33,7 @@
                 </el-col>
             </el-row>
         </el-row>
-    </div>
+    </el-collapse-item>
 </template>
 
 <script lang="ts">
