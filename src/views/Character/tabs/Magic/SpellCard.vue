@@ -13,11 +13,13 @@
                 {{ duration }}
             </el-col>
         </el-row>
-        <el-divider />
-        <div class="spell-card__bonus">
+        <el-divider v-if="showDivider" />
+
+        <slot name="footer"></slot>
+        <!-- <div class="spell-card__bonus">
             {{ source }}: {{ hitBonus }} to hit, DC {{ dc }}
-        </div>
-        <template v-if="upcastable">
+        </div> -->
+        <!-- <template v-if="upcastable">
             <el-tooltip placement="top" effect="light">
                 <div slot="content">
                     <div><b>Upcast</b></div>
@@ -52,7 +54,7 @@
                     Cast
                 </el-button>
             </div>
-        </template>
+        </template> -->
 
         <el-dialog
             title="Spell Description"
@@ -82,7 +84,7 @@
             </p>
             <p>
                 <b>Components:</b>
-                {{ spell.spell.components }}
+                {{ spell.components }}
             </p>
             <p>
                 <b>Range:</b>
@@ -98,11 +100,11 @@
             </p>
             <p>
                 <b>Concentration:</b>
-                {{ spell.spell.concentration ? "Yes" : "No" }}
+                {{ spell.concentration ? "Yes" : "No" }}
             </p>
             <p>
                 <b>Ritual:</b>
-                {{ spell.spell.ritual ? "Yes" : "No" }}
+                {{ spell.ritual ? "Yes" : "No" }}
             </p>
             <p v-html="fullText"></p>
         </el-dialog>
@@ -132,6 +134,7 @@ import transmutationImage from "@/assets/schools/transmutation.svg";
 import illusionImage from "@/assets/schools/illusion.svg";
 import { store } from "@/store";
 import { Character } from "@/models/Character";
+import { Spell } from "@/models/sourceinfo/Spell";
 
 interface UpcastSlot {
     text: string;
@@ -141,38 +144,30 @@ interface UpcastSlot {
 export default Vue.extend({
     name: "SpellCard",
     props: {
-        spell: Object as PropType<SpellBySource>,
-        upcastable: {
+        spell: Object as PropType<Spell>,
+        showDivider: {
             type: Boolean,
-            default: true,
+            default: false,
         },
     },
     computed: {
-        character(): Character {
-            return store.character;
-        },
-        magic(): Magic {
-            return this.character.magic;
-        },
         name(): string {
-            return this.spell.spell.name;
+            return this.spell.name;
         },
-        source(): string {
-            return this.spell.source;
-        },
-        dc(): number {
-            return this.spell.dc;
-        },
-        hitBonus(): string {
-            return this.spell.hitBonus > 0
-                ? `+${this.spell.hitBonus}`
-                : String(this.spell.hitBonus);
-        },
+
+        // dc(): number {
+        //     return this.spell.dc;
+        // },
+        // hitBonus(): string {
+        //     return this.spell.hitBonus > 0
+        //         ? `+${this.spell.hitBonus}`
+        //         : String(this.spell.hitBonus);
+        // },
         school(): string {
-            return this.spell.spell.school;
+            return this.spell.school;
         },
         classes(): string {
-            return this.spell.spell.classes.join(", ");
+            return this.spell.classes.join(", ");
         },
         imageUrl(): string {
             switch (this.school) {
@@ -197,13 +192,13 @@ export default Vue.extend({
             }
         },
         duration(): string {
-            return this.spell.spell.duration;
+            return this.spell.duration;
         },
         range(): string {
-            return this.spell.spell.range;
+            return this.spell.range;
         },
         castingTime(): string {
-            return this.spell.spell.casting_time;
+            return this.spell.casting_time;
         },
         style(): any {
             return {
@@ -211,41 +206,41 @@ export default Vue.extend({
             };
         },
         levelText(): string {
-            return this.spell.spell.level === 0
+            return this.spell.level === 0
                 ? "Cantrip"
-                : `Level ${this.spell.spell.level}`;
+                : `Level ${this.spell.level}`;
         },
-        isPossible(): boolean {
-            const level = this.spell.spell.level;
-            return (
-                this.magic.multiclassSlots[level].remaining > 0 ||
-                (this.magic.pactSlot?.level === level &&
-                    this.magic.pactSlot?.remaining > 0)
-            );
-        },
+        // isPossible(): boolean {
+        //     const level = this.spell.spell.level;
+        //     return (
+        //         this.magic.multiclassSlots[level].remaining > 0 ||
+        //         (this.magic.pactSlot?.level === level &&
+        //             this.magic.pactSlot?.remaining > 0)
+        //     );
+        // },
         level(): number {
-            return this.spell.spell.level;
+            return this.spell.level;
         },
-        upcastSlots(): UpcastSlot[] {
-            const levelString = (level: number, remaining: number) =>
-                `Level ${level} (${remaining})`;
+        // upcastSlots(): UpcastSlot[] {
+        //     const levelString = (level: number, remaining: number) =>
+        //         `Level ${level} (${remaining})`;
 
-            const upcast: UpcastSlot[] = this.magic.multiclassSlots
-                .filter((slot) => slot.level > this.level && slot.remaining > 0)
-                .map((sl) => ({
-                    text: levelString(sl.level, sl.remaining),
-                    level: sl.level,
-                }));
-            const pactSlot = this.magic.pactSlot;
+        //     const upcast: UpcastSlot[] = this.magic.multiclassSlots
+        //         .filter((slot) => slot.level > this.level && slot.remaining > 0)
+        //         .map((sl) => ({
+        //             text: levelString(sl.level, sl.remaining),
+        //             level: sl.level,
+        //         }));
+        //     const pactSlot = this.magic.pactSlot;
 
-            if (pactSlot && pactSlot.level >= this.level) {
-                upcast.push({
-                    text: `Pact (Level ${pactSlot.level}, ${pactSlot.remaining})`,
-                    level: "pact",
-                });
-            }
-            return upcast;
-        },
+        //     if (pactSlot && pactSlot.level >= this.level) {
+        //         upcast.push({
+        //             text: `Pact (Level ${pactSlot.level}, ${pactSlot.remaining})`,
+        //             level: "pact",
+        //         });
+        //     }
+        //     return upcast;
+        // },
     },
     data() {
         return {
@@ -256,7 +251,7 @@ export default Vue.extend({
     methods: {
         showDescription() {
             if (!this.fullText) {
-                this.fullText = marked(this.spell.spell.description);
+                this.fullText = marked(this.spell.description);
             }
             this.isDescriptionVisible = true;
         },
