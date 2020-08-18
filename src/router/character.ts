@@ -8,6 +8,7 @@ import Abilities from "@/views/Character/tabs/Abilities.vue";
 import Inventory from "@/views/Character/tabs/Inventory.vue";
 import SpellList from "@/views/Character/tabs/SpellList.vue";
 import PrepareSpells from "@/views/Character/tabs/PrepareSpells.vue";
+import ManageMagicSource from "@/views/Character/tabs/ManageMagicSources.vue";
 
 export const CharacterRoutes: RouteConfig = {
     name: "character",
@@ -49,6 +50,11 @@ export const CharacterRoutes: RouteConfig = {
             name: "prepareSpells",
             path: "prepare-spells",
             component: PrepareSpells,
+        },
+        {
+            name: "manageMagicSources",
+            path: "manage-magic-sources",
+            component: ManageMagicSource,
         },
     ],
 };

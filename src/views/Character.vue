@@ -138,6 +138,10 @@ export default Vue.extend({
                     // component: PrepareSpells,
                     path: "/character/prepare-spells",
                 },
+                {
+                    name: "Manage Magic Sources",
+                    path: "/character/manage-magic-sources",
+                },
             ],
             // tabOrder: ["overview", "combat"],
             selectedTab: "",
