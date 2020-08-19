@@ -9,10 +9,19 @@
                 <el-col :span="6" v-for="known in spells" :key="known.name">
                     <spell-card :spell="known.spell" :showDivider="true">
                         <template slot="footer">
+                            <el-row>
+                                <el-checkbox
+                                    :checked="known.known.alwaysPrepared"
+                                    @input="toggleAlwaysPrepared(known, $event)"
+                                >
+                                    Always Prepared
+                                </el-checkbox>
+                            </el-row>
                             <template v-if="known.known.prepared">
                                 <el-button
                                     type="success"
                                     @click="unprepareSpell(known)"
+                                    :disabled="known.known.alwaysPrepared"
                                 >
                                     <i class="fas fa-check"></i>
                                     Prepared!
@@ -23,6 +32,7 @@
                                 <el-button
                                     type="primary"
                                     @click="prepareSpell(known)"
+                                    :disabled="known.known.alwaysPrepared"
                                 >
                                     <i class="fas fa-scroll"></i>
                                     Prepare
@@ -102,6 +112,21 @@ export default Vue.extend({
         },
         unprepareSpell(spell: SpellCard) {
             this.magicSource.unprepareSpell(spell.spell.slug);
+            this.changeTracker++;
+        },
+        alwaysPrepare(spell: SpellCard) {
+            this.magicSource.alwaysPrepare(spell.spell.slug);
+        },
+        alwaysUnprepare(spell: SpellCard) {
+            this.magicSource.alwaysUnprepare(spell.spell.slug);
+        },
+        toggleAlwaysPrepared(spell: SpellCard, isAlwaysPrepared: boolean) {
+            if (isAlwaysPrepared) {
+                this.alwaysPrepare(spell);
+                this.unprepareSpell(spell);
+            } else {
+                this.alwaysUnprepare(spell);
+            }
             this.changeTracker++;
         },
     },

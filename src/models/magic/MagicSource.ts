@@ -142,6 +142,18 @@ export class MagicSource {
         });
     }
 
+    alwaysPrepare(...spells: string[]) {
+        spells.forEach((spell) => {
+            this.knownSpells.get(spell)?.alwaysPrepare();
+        });
+    }
+
+    alwaysUnprepare(...spells: string[]) {
+        spells.forEach((spell) => {
+            this.knownSpells.get(spell)?.alwaysUnprepare();
+        });
+    }
+
     get adjustedLevel(): number {
         return this.spellSlotProgression * this.level;
     }
