@@ -15,6 +15,16 @@ import { MagicSource } from "./magic/MagicSource";
 import { Skill } from "./sourceinfo/SourceSkill";
 import sourceSkills from "@/reference/skills.json";
 
+export class StatOverrides {
+    initiative?: number;
+    passivePerception?: number;
+
+    constructor() {
+        this.initiative = undefined;
+        this.passivePerception = undefined;
+    }
+}
+
 export class Character {
     id: string;
     name: string;
@@ -49,6 +59,9 @@ export class Character {
     @Type(() => Proficiencies)
     proficiencies: Proficiencies;
 
+    @Type(() => StatOverrides)
+    statOverrides: StatOverrides;
+
     constructor() {
         this.name = "";
         this.race = "";
@@ -64,6 +77,7 @@ export class Character {
         this.proficiencies = new Proficiencies();
         this.size = "med";
         this.speed = "30 ft.";
+        this.statOverrides = new StatOverrides();
     }
 
     private getAbility(skillName: string): ScoreAbility | undefined {
@@ -156,5 +170,16 @@ export class Character {
 
     deleteFeature(id: string) {
         this.features = this.features.filter((f) => f.id !== id);
+    }
+
+    initiative(): number {
+        return this.statOverrides.initiative ?? this.abilityScores.dex.modifier;
+    }
+
+    passivePerception(): number {
+        return (
+            this.statOverrides.passivePerception ??
+            10 + this.skillModifier("Perception")
+        );
     }
 }
