@@ -35,11 +35,7 @@
                     </el-tab-pane>
                 </el-tabs> -->
 
-                <el-menu
-                    mode="horizontal"
-                    :default-active="selectedTab"
-                    :active-text-color="blue"
-                >
+                <el-menu mode="horizontal" :default-active="selectedTab">
                     <el-menu-item
                         v-for="{ name, path } in tabs"
                         :key="name"
