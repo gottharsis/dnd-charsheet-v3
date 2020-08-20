@@ -152,7 +152,7 @@ export default Vue.extend({
 
     data() {
         return {
-            isEditVisible: true,
+            isEditVisible: false,
             newWeapon: Object.assign({}, defaultNewWeapon),
             abilityOrder,
         };
