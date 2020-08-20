@@ -20,6 +20,7 @@ import { MagicSource } from "./magic/MagicSource";
 import { Skill } from "./sourceinfo/SourceSkill";
 import sourceSkills from "@/reference/skills.json";
 import { modifierString } from "@/util/modifierString";
+import { Weapon } from "./Weapon";
 
 export class StatOverrides {
     initiative?: number;
@@ -73,6 +74,9 @@ export class Character {
     @Type(() => StatOverrides)
     statOverrides: StatOverrides;
 
+    @Type(() => Weapon)
+    weapons: Weapon[];
+
     constructor() {
         this.name = "";
         this.race = "";
@@ -89,6 +93,7 @@ export class Character {
         this.size = "med";
         this.speed = "30 ft.";
         this.statOverrides = new StatOverrides();
+        this.weapons = [];
     }
 
     private getAbility(skillName: string): ScoreAbility | undefined {
@@ -164,8 +169,7 @@ export class Character {
         this.playerClass.recalculateHitDice();
         this.magic.removeMagicSource(name);
     }
-
-    recompute() {
+    private recomputeMagic() {
         const computeDcAndBonus = (source: MagicSource) => {
             if (!source.castingStat) return;
             source.hitBonus =
@@ -187,7 +191,21 @@ export class Character {
             setMSourceClsLvl(source);
         });
         this.magic.computeMulticlassSlots();
+    }
+
+    recompute() {
+        this.recomputeMagic();
         this.playerClass.recalculateHitDice();
+        this.recomputeWeapons();
+    }
+
+    private recomputeWeapons() {
+        this.weapons.forEach((weapon) =>
+            weapon.recompute(
+                this.abilityScores,
+                this.playerClass.proficiencyBonus
+            )
+        );
     }
 
     deleteAbility(id: string) {
