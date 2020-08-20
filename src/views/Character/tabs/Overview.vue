@@ -31,10 +31,12 @@
                     <el-col :span="6">
                         <el-card class="overview-card">
                             <div slot="header">
-                                SIZE
+                                PASSIVE PERCEPTION
                             </div>
                             <!-- <h3>SPEED</h3> -->
-                            <div class="major-number">{{ size }}</div>
+                            <div class="major-number">
+                                {{ passivePerception }}
+                            </div>
                         </el-card>
                     </el-col>
 
@@ -87,6 +89,9 @@ export default Vue.extend({
         },
         proficiencyBonus(): number {
             return this.character.playerClass.proficiencyBonus;
+        },
+        passivePerception(): number {
+            return this.character.passivePerception();
         },
     },
 });
