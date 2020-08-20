@@ -7,6 +7,7 @@
         </el-header>
         <el-main>
             <edit-basic-info />
+            <edit-armor />
             <edit-ability-scores />
             <edit-health />
             <edit-classes />
@@ -26,6 +27,7 @@ import EditBasicInfo from "./EditCharacter/EditBasicInfo.vue";
 import EditAbilityScores from "./EditCharacter/EditAbilityScores.vue";
 import EditHealth from "./EditCharacter/EditHealth.vue";
 import EditClasses from "./EditCharacter/EditClasses.vue";
+import EditArmor from "./EditCharacter/EditArmor.vue";
 
 // const rfdc = rfdcModule();
 export default Vue.extend({
@@ -59,6 +61,7 @@ export default Vue.extend({
         EditAbilityScores,
         EditHealth,
         EditClasses,
+        EditArmor,
     },
 });
 </script>

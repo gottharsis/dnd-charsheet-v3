@@ -56,13 +56,13 @@ testCharacter.abilities.push(
 
 testCharacter.weapons.push(
     new Weapon({
-        name: "Dagger",
+        name: "Dagger 1",
         damage: "1d4",
         abilities: ["str", "dex"],
         isProficient: true,
     }),
     new Weapon({
-        name: "Dagger",
+        name: "Dagger 2",
         damage: "1d4",
         abilities: ["str", "dex"],
         isProficient: true,
