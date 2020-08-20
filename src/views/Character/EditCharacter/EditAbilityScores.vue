@@ -20,18 +20,20 @@
         </form>
         <h2>Saving Throws</h2>
         <el-form>
-            <el-row>
+            <el-row :gutter="15">
                 <el-col
                     v-for="{ stat, isProficient } in sThrows"
                     :key="stat"
                     :span="4"
                 >
-                    <el-form-item :label="stat.toUpperCase()">
+                    <p>
                         <el-checkbox
                             @input="setSavingThrow($event, stat)"
                             :checked="isProficient"
                         />
-                    </el-form-item>
+
+                        {{ stat.toUpperCase() }}
+                    </p>
                 </el-col>
             </el-row>
         </el-form>
