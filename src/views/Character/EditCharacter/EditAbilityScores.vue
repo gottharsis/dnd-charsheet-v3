@@ -18,6 +18,23 @@
                 </el-col>
             </el-row>
         </form>
+        <h2>Saving Throws</h2>
+        <el-form>
+            <el-row>
+                <el-col
+                    v-for="{ stat, isProficient } in sThrows"
+                    :key="stat"
+                    :span="4"
+                >
+                    <el-form-item :label="stat.toUpperCase()">
+                        <el-checkbox
+                            @input="setSavingThrow($event, stat)"
+                            :checked="isProficient"
+                        />
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </el-form>
     </div>
 </template>
 
@@ -31,6 +48,12 @@ import {
 } from "@/models/AbilityScores";
 import { Character } from "@/models/Character";
 import { store } from "@/store";
+
+interface SThrow {
+    stat: ScoreAbility;
+    isProficient: boolean;
+}
+
 export default Vue.extend({
     name: "EditAbilityScores",
 
@@ -40,6 +63,35 @@ export default Vue.extend({
         },
         statArray(): [ScoreAbility, AbilityScore][] {
             return this.character.abilityScores.getArrayForm();
+        },
+        savingThrows(): Set<ScoreAbility> {
+            return (this.changeTracker &&
+                this.character.proficiencies.savingThrows) as Set<ScoreAbility>;
+        },
+        sThrows(): SThrow[] {
+            return this.abilityOrder.map((stat) => ({
+                stat,
+                isProficient: this.savingThrows.has(stat),
+            }));
+        },
+    },
+
+    data() {
+        return {
+            abilityOrder,
+            changeTracker: 1,
+        };
+    },
+
+    methods: {
+        setSavingThrow(isProficient: boolean, stat: ScoreAbility) {
+            if (isProficient) {
+                this.savingThrows.add(stat);
+            } else {
+                this.savingThrows.delete(stat);
+            }
+            this.changeTracker++;
+            console.log(this.character.proficiencies.savingThrows);
         },
     },
 });

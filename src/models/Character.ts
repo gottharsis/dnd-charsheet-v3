@@ -8,12 +8,18 @@ import { Inventory } from "./Inventory";
 import { v4 as uuid } from "uuid";
 import { Feature } from "./Feature";
 import { Ability } from "./Ability";
-import { AbilityScore, AbilityScores, ScoreAbility } from "./AbilityScores";
+import {
+    AbilityScore,
+    AbilityScores,
+    ScoreAbility,
+    abilityOrder,
+} from "./AbilityScores";
 import { Proficiencies } from "./Proficiency";
 import { SourceClass } from "./sourceinfo/SourceClass";
 import { MagicSource } from "./magic/MagicSource";
 import { Skill } from "./sourceinfo/SourceSkill";
 import sourceSkills from "@/reference/skills.json";
+import { modifierString } from "@/util/modifierString";
 
 export class StatOverrides {
     initiative?: number;
@@ -23,6 +29,11 @@ export class StatOverrides {
         this.initiative = undefined;
         this.passivePerception = undefined;
     }
+}
+
+export interface SavingThrow {
+    stat: ScoreAbility;
+    bonus: string;
 }
 
 export class Character {
@@ -83,6 +94,21 @@ export class Character {
     private getAbility(skillName: string): ScoreAbility | undefined {
         return (sourceSkills as Skill[]).find((i) => i.name === skillName)
             ?.stat;
+    }
+
+    savingThrowBonus(stat: ScoreAbility) {
+        let mod = this.abilityScores[stat].modifier;
+        if (this.proficiencies.savingThrows.has(stat)) {
+            mod += this.playerClass.proficiencyBonus;
+        }
+        return mod;
+    }
+
+    get savingThrows(): SavingThrow[] {
+        return abilityOrder.map((stat) => ({
+            stat,
+            bonus: modifierString(this.savingThrowBonus(stat)),
+        }));
     }
 
     skillModifier(skill: Skill | string): number {
