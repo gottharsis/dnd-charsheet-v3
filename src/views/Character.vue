@@ -16,6 +16,9 @@
                 </el-drawer>
 
                 <h1>
+                    <el-button type="info" @click="backToHome">
+                        <i class="fas fa-arrow-left"></i>
+                    </el-button>
                     {{ name }}
                     <el-button type="info" @click="isEditDrawerVisible = true">
                         <i class="far fa-edit"></i>
@@ -57,7 +60,7 @@ import { store } from "@/store";
 import { Character } from "@/models/Character";
 import AbilitySidebar from "./Character/AbilitySidebar.vue";
 import EditCharacter from "./Character/EditCharacter.vue";
-
+import { saveCharacter } from "@/persist-data/persistCharacter";
 // import Overview from "./Character/tabs/Overview.vue";
 // import Combat from "./Character/tabs/Combat.vue";
 // import Magic from "./Character/tabs/Magic.vue";
@@ -147,6 +150,20 @@ export default Vue.extend({
         navigateTo(path: string) {
             this.$router.push(path);
         },
+        persist() {
+            saveCharacter(this.character);
+        },
+        backToHome() {
+            this.$router.push("/");
+        },
+    },
+
+    beforeDestroy() {
+        this.persist();
+        window.removeEventListener("beforeunload", this.persist);
+    },
+    mounted() {
+        window.addEventListener("beforeunload", this.persist);
     },
 });
 </script>
