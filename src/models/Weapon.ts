@@ -11,6 +11,7 @@ export class Weapon {
     proficiencyBonus: number;
     isProficient: boolean;
     id: string;
+    properties: string;
 
     constructor(obj?: {
         name: string;
@@ -18,6 +19,7 @@ export class Weapon {
         abilities?: ScoreAbility[];
         isProficient?: boolean;
         bonusToHit?: number;
+        properties?: string;
     }) {
         this.id = `weapon_${uuid()}`;
         this.name = obj?.name ?? "";
@@ -27,6 +29,7 @@ export class Weapon {
         this.bonusToHit = obj?.bonusToHit ?? 0;
         this.isProficient = obj?.isProficient ?? false;
         this.proficiencyBonus = 0;
+        this.properties = obj?.properties ?? "";
     }
 
     get damage(): string {
@@ -35,12 +38,12 @@ export class Weapon {
         return this.damageDie + modifierString(bonus);
     }
 
-    get hitBonus(): number {
+    get hitBonus(): string {
         let bonus = this.abilityBonus + this.bonusToHit;
         if (this.isProficient) {
             bonus += this.proficiencyBonus;
         }
-        return bonus;
+        return modifierString(bonus);
     }
 
     recompute(abilityScores: AbilityScores, proficiencyBonus: number) {

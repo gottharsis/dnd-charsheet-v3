@@ -3,6 +3,7 @@ import { SourceClass } from "@/models/sourceinfo/SourceClass";
 import SourceClasses from "@/reference/classes.json";
 import { MagicSource } from "@/models/magic/MagicSource";
 import { Ability } from "@/models/Ability";
+import { Weapon } from "@/models/Weapon";
 
 export const testCharacter = new Character();
 testCharacter.name = "Bob the BUilder";
@@ -50,6 +51,21 @@ testCharacter.abilities.push(
         uses: 1,
         description:
             "Cast Darkness once per day.\n\n***Source:*** Racial (Tiefling)",
+    })
+);
+
+testCharacter.weapons.push(
+    new Weapon({
+        name: "Dagger",
+        damage: "1d4",
+        abilities: ["str", "dex"],
+        isProficient: true,
+    }),
+    new Weapon({
+        name: "Dagger",
+        damage: "1d4",
+        abilities: ["str", "dex"],
+        isProficient: true,
     })
 );
 

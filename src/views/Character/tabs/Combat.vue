@@ -45,10 +45,11 @@
                 </el-card>
             </el-col>
         </el-row>
-
+        <el-divider />
         <!-- second row -->
         <el-row :gutter="20">
             <el-col :span="8" id="tracked-abilities">
+                <h2>Abilities</h2>
                 <el-card
                     class="overview-card"
                     v-for="ability in trackedAbilities"
@@ -73,6 +74,10 @@
                     </el-row>
                 </el-card>
             </el-col>
+
+            <el-col :span="16">
+                <weapons />
+            </el-col>
         </el-row>
     </div>
 </template>
@@ -80,6 +85,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Health from "@/views/Character/sections/HealthIndicator.vue";
+import Weapons from "./Combat/Weapons.vue";
 import { Character, SavingThrow } from "@/models/Character";
 import { store } from "@/store";
 import { Armor } from "@/models/Armor";
@@ -91,6 +97,7 @@ export default Vue.extend({
     name: "CombatTab",
     components: {
         Health,
+        Weapons,
     },
     data() {
         return { abilityOrder };
