@@ -92,7 +92,6 @@
                 </el-button>
             </el-row>
         </el-form>
-        <div style="height: 500px; background: blue;" />
     </div>
 </template>
 <script lang="ts">
