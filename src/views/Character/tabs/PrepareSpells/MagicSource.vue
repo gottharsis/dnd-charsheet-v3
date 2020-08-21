@@ -72,19 +72,18 @@ export default Vue.extend({
     },
     computed: {
         knownSpells(): [string, SpellCard[]][] {
-            const known = [...this.magicSource.knownSpells.values()]
-                .map(
-                    (knownSpell): SpellCard => {
-                        const spell = (allSpells as Record<string, Spell>)[
-                            knownSpell.spell
-                        ];
-                        return {
-                            spell,
-                            known: knownSpell,
-                        };
-                    }
-                )
-                .filter(({ spell }) => spell.level > 0);
+            const known = [...this.magicSource.knownSpells.values()].map(
+                (knownSpell): SpellCard => {
+                    const spell = (allSpells as Record<string, Spell>)[
+                        knownSpell.spell
+                    ];
+                    return {
+                        spell,
+                        known: knownSpell,
+                    };
+                }
+            );
+            // .filter(({ spell }) => spell.level > 0);
 
             const groups = groupBy(known, (sp: SpellCard) => {
                 const level = sp.spell.level;
