@@ -9,20 +9,12 @@ export class Ability {
     maxUses: number;
     remainingUses: number;
 
-    constructor({
-        name = "",
-        description = "",
-        uses = 0,
-    }: {
-        description?: string;
-        name: string;
-        uses: number;
-    }) {
+    constructor(obj?: { description?: string; name: string; uses: number }) {
         this.id = `ability_${uuid()}`;
-        this.name = name;
-        this.description = description;
-        this.maxUses = uses;
-        this.remainingUses = uses;
+        this.name = obj?.name ?? "";
+        this.description = obj?.description ?? "";
+        this.maxUses = obj?.uses ?? 0;
+        this.remainingUses = 0;
     }
 
     /**
