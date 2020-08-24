@@ -1,2 +1,2 @@
 # dnd-charsheet-v3
-Third rewrite of dnd-charsheet, this time with a web app instead of electron
+A character tracker for Dungeons and Dragons 5E. Made using Vue.js and Electron.
